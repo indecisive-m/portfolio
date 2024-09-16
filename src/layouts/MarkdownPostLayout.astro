@@ -1,0 +1,11 @@
+---
+import Layout from "./Layout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} isMarkdown={true}>
+  <p>
+    Written by <a href="/about/">{frontmatter.author}</a>
+  </p>
+  <slot />
+</Layout>

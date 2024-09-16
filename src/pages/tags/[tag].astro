@@ -1,0 +1,45 @@
+---
+import Card from "../../components/Card.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../blog/*.md");
+
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+  ];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.frontmatter.tags.includes(tag),
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={tag} isMarkdown={false}>
+  <p>Posts tagged with {tag}</p>
+  <ul>
+    {
+      posts.map((post) => (
+        <Card href={post.url} title={post.frontmatter.title} tags={[tag]} />
+      ))
+    }
+  </ul>
+</Layout>
+<style>
+  ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(2, calc(40ch - 1.5rem));
+    gap: 1rem;
+  }
+</style>

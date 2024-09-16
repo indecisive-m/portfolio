@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+import ThemeIcon from "./ThemeIcon.astro";
+
+const { currentPage, isMarkdown } = Astro.props;
+---
+
+{
+  !isMarkdown && (
+    <header>
+      <nav>
+        <a href="/" class:list={{ current: currentPage === "Home" }}>
+          Home
+        </a>
+        <a href="/about/" class:list={{ current: currentPage === "About Me" }}>
+          About
+        </a>
+        <a href="/blog/" class:list={{ current: currentPage === "Blog" }}>
+          Blog
+        </a>
+        <a href="/tags/" class:list={{ current: currentPage === "Tag Index" }}>
+          Tags
+        </a>
+      </nav>
+      <ThemeIcon />
+    </header>
+  )
+}
+
+{
+  isMarkdown && (
+    <header>
+      <nav>
+        <a href="/">Home</a>
+      </nav>
+      <ThemeIcon />
+    </header>
+  )
+}
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  a {
+    padding-inline-end: 1rem;
+    position: relative;
+  }
+
+  a:hover {
+    color: var(--heading-color);
+  }
+
+  .current {
+    position: relative;
+    color: var(--heading-color);
+    text-decoration: double;
+  }
+  .current::before {
+    position: absolute;
+    top: 0;
+    left: -1rem;
+    content: "\229B";
+    color: var(--heading-color);
+  }
+</style>

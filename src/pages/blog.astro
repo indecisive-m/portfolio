@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+
+const pageTitle = "Blog";
+
+const allPosts = await Astro.glob("./blog/*.md");
+---
+
+<Layout title={pageTitle} isMarkdown={false}>
+  <main>
+    <ul>
+      {
+        allPosts.map((post) => (
+          <Card
+            href={post.url}
+            title={post.frontmatter.title}
+            description={post.frontmatter.description}
+            tags={post.frontmatter.tags}
+          />
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+<style>
+  ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: repeat(2, calc(40ch - 1.5rem));
+    gap: 1rem;
+  }
+
+  main {
+    margin: 0;
+    display: grid;
+  }
+</style>
