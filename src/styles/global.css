@@ -78,3 +78,31 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+.grid {
+  container-type: inline-size;
+}
+
+.blog-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.blog-list li:first-child {
+  grid-column-end: span 3;
+}
+
+@container (width < 70ch) {
+  .blog-list {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .blog-list li:first-child {
+    grid-column-end: span 1;
+  }
+}

@@ -1,18 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 const pageTitle = "Blog";
 
 const allPosts = await getCollection("blog");
+
+type PostType = {
+  slug: string;
+  data: { title: string; description: string; tags: string[] };
+};
 ---
 
 <Layout title={pageTitle} isMarkdown={false}>
-  <main>
-    <ul class="list">
+  <main class="grid">
+    <ul class="blog-list">
       {
-        allPosts.map((post) => (
+        allPosts.map((post: PostType) => (
           <Card
             href={`/blog/${post.slug}`}
             title={post.data.title}
@@ -27,28 +32,12 @@ const allPosts = await getCollection("blog");
         margin: 0;
       }
 
-      ul {
-        display: grid;
-        margin: 0;
-        padding: 0;
-        grid-auto-rows: 1fr;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        container-type: inline-size;
-        container-name: grid;
-      }
-
-      ul :global(li:first-child) {
+      .blog-list :global(li:first-child) {
         grid-column-end: span 2;
       }
 
-      @container grid (width < 70ch) {
-        ul {
-          display: grid;
-          grid-template-columns: 100px;
-        }
-
-        ul :global(li:first-child) {
+      @container (width < 70ch) {
+        .blog-list :global(li:first-child) {
           grid-column-end: span 1;
         }
       }

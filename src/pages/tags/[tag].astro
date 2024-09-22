@@ -1,60 +1,58 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import Card from "../../components/Card.astro";
 import Layout from "../../layouts/Layout.astro";
-import type {
-  InferGetStaticParamsType,
-  InferGetStaticPropsType,
-  GetStaticPaths,
-  MarkdownInstance,
-} from "astro";
+import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 
-export const getStaticPaths = (async () => {
+type PostType = {
+  slug: string;
+  data: { title: string; description: string };
+};
+
+export const getStaticPaths = async () => {
   const allPosts = await getCollection("blog");
 
   const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+    ...new Set(
+      allPosts.map((post: CollectionEntry<"blog">) => post.data.tags).flat(),
+    ),
   ];
 
-  return uniqueTags.map((tag) => {
+  return uniqueTags.map((value: unknown) => {
     const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag),
+      post.data.tags.includes(value as string),
     );
+
+    const tag = value as string;
+
     return {
       params: { tag },
       props: { posts: filteredPosts },
     };
   });
-}) satisfies GetStaticPaths;
+};
 
 type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { tag } = Astro.params as Params;
-const { posts } = Astro.props;
+const { posts } = Astro.props as Props;
 ---
 
 <Layout title={tag} isMarkdown={false}>
-  <p>Posts tagged with {tag}</p>
-  <ul>
-    {
-      posts.map((post) => (
-        <Card
-          href={`/blog/${post.slug}`}
-          title={post.data.title}
-          tags={[tag]}
-          description={post.data.description}
-        />
-      ))
-    }
-  </ul>
+  <main class="grid">
+    <p>Posts tagged with {tag}</p>
+    <ul class="blog-list">
+      {
+        posts.map((post: PostType) => (
+          <Card
+            href={`/blog/${post.slug}`}
+            title={post.data.title}
+            tags={[tag]}
+            description={post.data.description}
+          />
+        ))
+      }
+    </ul>
+  </main>
 </Layout>
-<style>
-  ul {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    grid-template-columns: repeat(2, calc(40ch - 1.5rem));
-    gap: 1rem;
-  }
-</style>
