@@ -1,11 +1,9 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "My First Blog Post"
-pubDate: 2022-07-01
+publishDate: 2022-07-01
 description: "This is the first post of my new Astro blog."
 author: "Mike"
 image: "https://docs.astro.build/assets/rose.webp"
-url:
 alt: "The Astro logo on a dark background with a pink glow."
 tags: ["astro", "blogging", "learning in public"]
 ---

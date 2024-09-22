@@ -1,39 +1,57 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import { getCollection } from "astro:content";
 
 const pageTitle = "Blog";
 
-const allPosts = await Astro.glob("./blog/*.md");
+const allPosts = await getCollection("blog");
 ---
 
 <Layout title={pageTitle} isMarkdown={false}>
   <main>
-    <ul>
+    <ul class="list">
       {
         allPosts.map((post) => (
           <Card
-            href={post.url}
-            title={post.frontmatter.title}
-            description={post.frontmatter.description}
-            tags={post.frontmatter.tags}
+            href={`/blog/${post.slug}`}
+            title={post.data.title}
+            description={post.data.description}
+            tags={post.data.tags}
           />
         ))
       }
     </ul>
+    <style>
+      main {
+        margin: 0;
+      }
+
+      ul {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        grid-auto-rows: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        container-type: inline-size;
+        container-name: grid;
+      }
+
+      ul :global(li:first-child) {
+        grid-column-end: span 2;
+      }
+
+      @container grid (width < 70ch) {
+        ul {
+          display: grid;
+          grid-template-columns: 100px;
+        }
+
+        ul :global(li:first-child) {
+          grid-column-end: span 1;
+        }
+      }
+    </style>
   </main>
 </Layout>
-<style>
-  ul {
-    display: grid;
-    margin: 0;
-    padding: 0;
-    grid-template-columns: repeat(2, calc(40ch - 1.5rem));
-    gap: 1rem;
-  }
-
-  main {
-    margin: 0;
-    display: grid;
-  }
-</style>

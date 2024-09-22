@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import Card from "../../components/Card.astro";
 import Layout from "../../layouts/Layout.astro";
 import type {
@@ -9,17 +10,15 @@ import type {
 } from "astro";
 
 export const getStaticPaths = (async () => {
-  const allPosts: MarkdownInstance<Record<string, any>>[] =
-    await Astro.glob("../blog/*.md");
+  const allPosts = await getCollection("blog");
 
-  console.log(typeof allPosts);
   const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ];
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) =>
-      post.frontmatter.tags.includes(tag),
+      post.data.tags.includes(tag),
     );
     return {
       params: { tag },
@@ -41,10 +40,10 @@ const { posts } = Astro.props;
     {
       posts.map((post) => (
         <Card
-          href={post.url}
-          title={post.frontmatter.title}
+          href={`/blog/${post.slug}`}
+          title={post.data.title}
           tags={[tag]}
-          description={post.frontmatter.description}
+          description={post.data.description}
         />
       ))
     }
