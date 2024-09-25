@@ -36,7 +36,9 @@ const { title, isMarkdown } = Astro.props;
   <body>
     <Navigation currentPage={title} isMarkdown={isMarkdown} />
     <h1>{title}</h1>
-    <slot />
+    <main class="grid">
+      <slot />
+    </main>
   </body>
 </html>
 <style is:global>

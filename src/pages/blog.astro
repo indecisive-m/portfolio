@@ -5,7 +5,14 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 const pageTitle = "Blog";
 
-const allPosts = await getCollection("blog");
+const allPosts = await getCollection(
+  "blog",
+  ({ data }: CollectionEntry<"blog">) => data.publishDate <= new Date(),
+);
+
+allPosts.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
 
 type PostType = {
   slug: string;
@@ -14,33 +21,39 @@ type PostType = {
 ---
 
 <Layout title={pageTitle} isMarkdown={false}>
-  <main class="grid">
-    <ul class="blog-list">
-      {
-        allPosts.map((post: PostType) => (
-          <Card
-            href={`/blog/${post.slug}`}
-            title={post.data.title}
-            description={post.data.description}
-            tags={post.data.tags}
-          />
-        ))
-      }
-    </ul>
-    <style>
-      main {
-        margin: 0;
-      }
+  <ul class="blog-list">
+    {
+      allPosts.map((post: PostType) => (
+        <Card
+          href={`/blog/${post.slug}`}
+          title={post.data.title}
+          description={post.data.description}
+          tags={post.data.tags}
+        />
+      ))
+    }
+  </ul>
+  <style>
+    main {
+      margin: 0;
+    }
 
+    .blog-list :global(li:first-child) {
+      grid-column-end: span 2;
+    }
+
+    .blog-list :global(li:nth-child(4)) {
+      grid-column-start: span 2;
+    }
+
+    @container (max-width: 70ch) {
       .blog-list :global(li:first-child) {
-        grid-column-end: span 2;
+        grid-column-end: span 1;
       }
 
-      @container (width < 70ch) {
-        .blog-list :global(li:first-child) {
-          grid-column-end: span 1;
-        }
+      .blog-list :global(li:nth-child(4)) {
+        grid-column-start: span 1;
       }
-    </style>
-  </main>
+    }
+  </style>
 </Layout>

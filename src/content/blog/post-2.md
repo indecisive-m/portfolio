@@ -6,6 +6,7 @@ image: "https://docs.astro.build/assets/arc.webp"
 alt: "The Astro logo on a dark background with a purple gradient arc."
 publishDate: 2022-07-08
 tags: ["astro", "blogging", "learning in public", "successes"]
+slug: success
 ---
 
 After a successful first week learning Astro, I decided to try some more. I wrote and imported a small component from memory!

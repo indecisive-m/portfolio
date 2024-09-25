@@ -6,6 +6,7 @@
   --font-color: #463a32;
   --bg-color: #fffcfa;
   --container-color: #f9f1ed;
+  --box-shadow: hsla(0, 0%, 100%, 0.4);
 }
 
 html.dark {
@@ -13,13 +14,14 @@ html.dark {
   --heading-color: #f58a3d;
   --font-color: #dcbaa3;
   --container-color: #242220;
+  --box-shadow: hsla(0, 0%, 0%, 0.4);
 }
 
 body {
   margin: 0 auto;
   width: 100%;
   max-width: 100ch;
-  padding: 1rem;
+  padding: 2rem;
   line-height: 1.5;
   background-color: var(--bg-color);
 }
@@ -31,19 +33,30 @@ body {
 h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--heading-color);
 }
 
 h2 {
-  margin: 1rem 0;
-  font-size: 2.5rem;
-  font-weight: 700;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
   color: var(--heading-color);
 }
 
 p {
   color: var(--font-color);
+  font-size: 1rem;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 code {
@@ -58,25 +71,28 @@ code {
     monospace;
 }
 
-a:link {
-  text-decoration: none;
-  background-color: transparent;
-  color: var(--font-color);
-  font-size: 1.2em;
-  position: relative;
-}
+a {
+  &:link {
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--font-color);
+    font-size: 1.2em;
+    position: relative;
+  }
 
-a:visited {
-  text-decoration: none;
-  color: var(--font-color);
-}
+  &:visited {
+    text-decoration: none;
+    color: var(--font-color);
+  }
 
-a:hover {
-  color: var(--heading-color);
-}
+  &:hover,
+  &:focus-visible {
+    color: var(--heading-color);
+  }
 
-a:active {
-  text-decoration: none;
+  &:active {
+    text-decoration: none;
+  }
 }
 
 .grid {
@@ -96,7 +112,16 @@ a:active {
   grid-column-end: span 3;
 }
 
-@container (width < 70ch) {
+@container (width < 80ch) {
+  .blog-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .blog-list li:first-child {
+    grid-column-end: span 2;
+  }
+}
+
+@container (max-width: 70ch) {
   .blog-list {
     display: grid;
     grid-template-columns: 1fr;

@@ -40,19 +40,17 @@ const { posts } = Astro.props as Props;
 ---
 
 <Layout title={tag} isMarkdown={false}>
-  <main class="grid">
-    <p>Posts tagged with {tag}</p>
-    <ul class="blog-list">
-      {
-        posts.map((post: PostType) => (
-          <Card
-            href={`/blog/${post.slug}`}
-            title={post.data.title}
-            tags={[tag]}
-            description={post.data.description}
-          />
-        ))
-      }
-    </ul>
-  </main>
+  <p>Posts tagged with {tag}</p>
+  <ul class="blog-list">
+    {
+      posts.map((post: PostType) => (
+        <Card
+          href={`/blog/${post.slug}`}
+          title={post.data.title}
+          tags={[tag]}
+          description={post.data.description}
+        />
+      ))
+    }
+  </ul>
 </Layout>

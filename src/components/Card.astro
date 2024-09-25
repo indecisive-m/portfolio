@@ -16,9 +16,9 @@ const { href, title, description, tags } = Astro.props;
       {title}
     </h2>
     <p>{description}</p>
-    <div>
+    <!-- <div>
       {tags.map((tag) => <span>{tag}</span>)}
-    </div>
+    </div> -->
   </a>
 </li>
 
@@ -27,15 +27,11 @@ const { href, title, description, tags } = Astro.props;
     list-style: none;
     background-color: var(--container-color);
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
   }
 
   .wrapper:hover {
     scale: 1.02;
-  }
-
-  h2 {
-    font-size: 2rem;
   }
 
   div {
