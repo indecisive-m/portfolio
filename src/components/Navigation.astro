@@ -2,90 +2,72 @@
 import "../styles/global.css";
 import ThemeIcon from "./ThemeIcon.astro";
 
-const { currentPage, isMarkdown } = Astro.props;
+const { currentPage } = Astro.props;
 ---
 
-{
-  !isMarkdown && (
-    <header>
-      <button
-        aria-controls="primary-nav"
-        aria-expanded="false"
-        transition:persist
-      >
-        <span class="visually-hidden">Menu</span>
+<header>
+  <button
+    aria-controls="primary-nav"
+    aria-expanded="false"
+    id="menu-button"
+    transition:persist
+  >
+    <span class="visually-hidden">Menu</span>
 
-        <svg
-          class="icon-hamburger"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="4.5 7.5 15 9"
-        >
+    <svg
+      class="icon-hamburger"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="4.5 7.5 15 9"
+    >
+      <path
+        d="M5 8H13.75M5 12H19M10.25 16L19 16"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+
+    <svg
+      viewBox="0 0 24.00 24.00"
+      class="icon-close"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0">
+        <rect x="0" y="0" width="24.00" height="24.00" rx="0" fill="none"
+        ></rect>
+      </g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        <g id="Menu / Close_SM">
           <path
-            d="M5 8H13.75M5 12H19M10.25 16L19 16"
+            id="Vector"
+            d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
+            stroke="#000000"
+            stroke-width="2"
             stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+            stroke-linejoin="round"></path>
+        </g>
+      </g>
+    </svg>
+  </button>
 
-        <svg
-          viewBox="0 0 24.00 24.00"
-          class="icon-close"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g id="SVGRepo_bgCarrier" stroke-width="0">
-            <rect x="0" y="0" width="24.00" height="24.00" rx="0" fill="none" />
-          </g>
-          <g
-            id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <g id="SVGRepo_iconCarrier">
-            <g id="Menu / Close_SM">
-              <path
-                id="Vector"
-                d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
-                stroke="#000000"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </g>
-          </g>
-        </svg>
-      </button>
-
-      <nav id="primary-nav">
-        <a href="/" class:list={{ current: currentPage === "Home" }}>
-          Home
-        </a>
-        <a href="/about/" class:list={{ current: currentPage === "About Me" }}>
-          About
-        </a>
-        <a href="/blog/" class:list={{ current: currentPage === "Blog" }}>
-          Blog
-        </a>
-        <a href="/tags/" class:list={{ current: currentPage === "Tag Index" }}>
+  <nav id="primary-nav">
+    <a href="/" class:list={{ current: currentPage === "Home" }}> Home </a>
+    <a href="/about/" class:list={{ current: currentPage === "About Me" }}>
+      About
+    </a>
+    <a href="/blog/" class:list={{ current: currentPage === "Blog" }}> Blog </a>
+    {
+      /* <a href="/tags/" class:list={{ current: currentPage === "Tag Index" }}>
           Tags
-        </a>
-      </nav>
-      <ThemeIcon />
-    </header>
-  )
-}
-
-{
-  isMarkdown && (
-    <header>
-      <nav id="primary-nav" class="blog-nav">
-        <a href="/blog">Blog</a>
-      </nav>
-      <ThemeIcon />
-    </header>
-  )
-}
+        </a> */
+    }
+  </nav>
+  <ThemeIcon />
+</header>
 
 <style>
   header {
@@ -187,7 +169,7 @@ const { currentPage, isMarkdown } = Astro.props;
 </style>
 
 <script>
-  const navToggle = document.querySelector("button");
+  const navToggle = document.querySelector("#menu-button");
 
   navToggle?.addEventListener("click", () => {
     console.log("click");

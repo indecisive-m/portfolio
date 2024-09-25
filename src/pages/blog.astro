@@ -16,11 +16,16 @@ allPosts.sort(
 
 type PostType = {
   slug: string;
-  data: { title: string; description: string; tags: string[] };
+  data: {
+    title: string;
+    description: string;
+    tags: string[];
+    publishDate: Date;
+  };
 };
 ---
 
-<Layout title={pageTitle} isMarkdown={false}>
+<Layout title={pageTitle}>
   <ul class="blog-list">
     {
       allPosts.map((post: PostType) => (
@@ -29,6 +34,7 @@ type PostType = {
           title={post.data.title}
           description={post.data.description}
           tags={post.data.tags}
+          publishDate={post.data.publishDate}
         />
       ))
     }

@@ -9,10 +9,9 @@ import "../styles/global.css";
 
 interface Props {
   title: string;
-  isMarkdown: boolean;
 }
 
-const { title, isMarkdown } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,7 +34,7 @@ const { title, isMarkdown } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
-    <Navigation currentPage={title} isMarkdown={isMarkdown} />
+    <Navigation currentPage={title} />
     <h1>{title}</h1>
     <main class="grid">
       <slot />

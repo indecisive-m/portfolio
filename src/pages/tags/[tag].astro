@@ -6,7 +6,12 @@ import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 
 type PostType = {
   slug: string;
-  data: { title: string; description: string };
+  data: {
+    title: string;
+    description: string;
+    publishDate: Date;
+    tags: Array<string>;
+  };
 };
 
 export const getStaticPaths = async () => {
@@ -39,7 +44,7 @@ const { tag } = Astro.params as Params;
 const { posts } = Astro.props as Props;
 ---
 
-<Layout title={tag} isMarkdown={false}>
+<Layout title={tag}>
   <p>Posts tagged with {tag}</p>
   <ul class="blog-list">
     {
@@ -49,6 +54,7 @@ const { posts } = Astro.props as Props;
           title={post.data.title}
           tags={[tag]}
           description={post.data.description}
+          publishDate={post.data.publishDate}
         />
       ))
     }
