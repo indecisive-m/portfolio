@@ -77,7 +77,6 @@ import "@styles/global.css";
     position: absolute;
     padding-inline: 2rem;
     margin: 0 auto;
-    width: 100%;
     max-width: 100ch;
     align-items: baseline;
     justify-content: space-between;
@@ -89,5 +88,34 @@ import "@styles/global.css";
   p {
     display: flex;
     font-size: 0.6rem;
+  }
+
+  @media (width < 1050px) {
+    div {
+      left: 1rem;
+      right: 1rem;
+      padding-inline: 1rem;
+      margin: 0;
+    }
+  }
+
+  @media (width < 750px) {
+    div {
+      left: 1rem;
+      right: 1rem;
+      padding-inline: 1rem;
+      margin: 0;
+    }
+    ul {
+      gap: 1rem;
+    }
+  }
+
+  @media (width < 400px) {
+    div {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 </style>
