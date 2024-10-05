@@ -56,8 +56,11 @@ const { currentPage } = Astro.props;
 
   <nav id="primary-nav">
     <a href="/" class:list={{ current: currentPage === "Home" }}> Home </a>
-    <a href="/about/" class:list={{ current: currentPage === "About Me" }}>
+    <a href="/about/" class:list={{ current: currentPage === "About" }}>
       About
+    </a>
+    <a href="/projects/" class:list={{ current: currentPage === "Projects" }}>
+      Projects
     </a>
     <a href="/blog/" class:list={{ current: currentPage === "Blog" }}> Blog </a>
     {
@@ -209,19 +212,14 @@ const { currentPage } = Astro.props;
   const navToggle = document.querySelector("#menu-button");
 
   navToggle?.addEventListener("click", () => {
-    console.log("click");
     const currentToggleState = navToggle.getAttribute("aria-expanded");
-
-    console.log(currentToggleState);
 
     if (currentToggleState === "false") {
       navToggle.setAttribute("aria-expanded", "true");
     } else {
       navToggle.setAttribute("aria-expanded", "closing");
-      console.log("closing");
       setTimeout(() => {
         navToggle.setAttribute("aria-expanded", "false");
-        console.log("false");
       }, 500);
     }
   });

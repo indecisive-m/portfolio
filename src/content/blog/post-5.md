@@ -2,7 +2,7 @@
 title: My Fifth Blog Post
 author: Astro Learner
 description: "This post will show up on its own!"
-image: "https://docs.astro.build/default-og-image.png"
+image: "../code.jpeg"
 alt: "The word astro against an illustration of planets and stars."
 publishDate: 2022-08-10
 tags: ["astro", "successes"]

@@ -1,0 +1,82 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import Layout from "@layouts/Layout.astro";
+import Card from "@components/Card.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Pagination from "@components/Pagination.astro";
+
+const pageTitle = "Blog";
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const allPosts = await getCollection(
+    "blog",
+    ({ data }: CollectionEntry<"blog">) => data.publishDate <= new Date(),
+  );
+
+  const sortedPosts = allPosts.sort(
+    (
+      a: { data: { publishDate: number } },
+      b: { data: { publishDate: number } },
+    ) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+  );
+
+  return paginate(sortedPosts, { pageSize: 2 });
+};
+
+type Props = {
+  page: Page<CollectionEntry<"blog">>;
+};
+
+const page = Astro.props.page;
+
+type PostType = {
+  slug: string;
+  data: {
+    title: string;
+    description: string;
+    tags: string[];
+    publishDate: Date;
+  };
+};
+---
+
+<Layout title={pageTitle}>
+  <ul class="blog-list">
+    {
+      page.data.map((post: PostType) => (
+        <Card
+          href={`/blog/${post.slug}`}
+          title={post.data.title}
+          description={post.data.description}
+          tags={post.data.tags}
+          publishDate={post.data.publishDate}
+        />
+      ))
+    }
+  </ul>
+
+  <Pagination page={page} />
+</Layout>
+
+<style>
+  .blog-list {
+    padding-block: 2rem;
+  }
+  .blog-list :global(li:first-child) {
+    grid-column-end: span 2;
+  }
+
+  .blog-list :global(li:nth-child(4)) {
+    grid-column-start: span 2;
+  }
+
+  @container (max-width: 70ch) {
+    .blog-list :global(li:first-child) {
+      grid-column-end: span 1;
+    }
+
+    .blog-list :global(li:nth-child(4)) {
+      grid-column-start: span 1;
+    }
+  }
+</style>

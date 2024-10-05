@@ -3,13 +3,23 @@ title: "My First Blog Post"
 publishDate: 2022-07-01
 description: "This is the first post of my new Astro blog."
 author: "Mike"
-image: "https://docs.astro.build/assets/rose.webp"
+image: "./code.jpeg"
 alt: "The Astro logo on a dark background with a pink glow."
 tags: ["astro", "blogging", "learning in public"]
 slug: new-blog
 ---
 
 Published on: 2022-07-01
+
+![](./img-post-1.png)
+
+```java
+Text
+    text = stringResource(id = hero.heroName),
+    style = MaterialTheme.typography.displaySmall,
+    color = MaterialTheme.colorScheme.onPrimaryContainer
+    )
+```
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
 

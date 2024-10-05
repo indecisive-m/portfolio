@@ -4,10 +4,16 @@ const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title}>
-  <p>
-    Written by <a href="/about/">Mike Watkins</a>
-  </p>
+  <h2 transition:name={frontmatter.title}>
+    {frontmatter.title}
+  </h2>
+
   <slot />
 </Layout>
 
-<style></style>
+<style is:global>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import { undefined } from "astro:schema";
+import "../styles/global.css";
+
+const { page } = Astro.props;
+
+console.log(page);
+---
+
+<nav>
+  <ul>
+    {
+      page?.url?.first && (
+        <li>
+          <a href={page?.url?.first}>First</a>
+        </li>
+      )
+    }
+    {
+      page?.url?.prev && (
+        <li>
+          <a href={page?.url?.prev}>Prev</a>
+        </li>
+      )
+    }
+    {
+      page?.url?.next && (
+        <li>
+          <a href={page?.url?.next}>Next</a>
+        </li>
+      )
+    }
+    {
+      page?.url?.last && (
+        <li>
+          <a href={page?.url?.last}>Last</a>
+        </li>
+      )
+    }
+  </ul>
+</nav>
+
+<style>
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin: 0;
+  }
+</style>

@@ -3,8 +3,13 @@ import { defineConfig } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://mikewatkins.dev",
   integrations: [sitemap()],
+  markdown: {
+    shikiConfig: {
+      theme: "one-dark-pro",
+      wrap: false,
+    },
+  },
 });
