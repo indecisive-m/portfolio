@@ -2,7 +2,7 @@
 import "@styles/global.css";
 ---
 
-<div>
+<div class="footer">
   <p class="small-font">Copyright © Mike Watkins 2024</p>
 
   <ul>
@@ -74,15 +74,14 @@ import "@styles/global.css";
 
   div {
     display: flex;
-    position: absolute;
-    padding-inline: 2rem;
+    position: sticky;
+    top: 100vh;
+
     margin: 0 auto;
-    max-width: 100ch;
+    max-width: 100ch; */
     align-items: baseline;
     justify-content: space-between;
-    bottom: 1rem;
-    left: 2rem;
-    right: 2rem;
+
   }
 
   p {
@@ -90,22 +89,8 @@ import "@styles/global.css";
     font-size: 0.6rem;
   }
 
-  @media (width < 1050px) {
-    div {
-      left: 1rem;
-      right: 1rem;
-      padding-inline: 1rem;
-      margin: 0;
-    }
-  }
 
   @media (width < 750px) {
-    div {
-      left: 1rem;
-      right: 1rem;
-      padding-inline: 1rem;
-      margin: 0;
-    }
     ul {
       gap: 1rem;
     }

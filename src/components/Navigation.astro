@@ -5,13 +5,9 @@ import ThemeIcon from "./ThemeIcon.astro";
 const { currentPage } = Astro.props;
 ---
 
+<!-- transition:persist -->
 <header>
-  <button
-    aria-controls="primary-nav"
-    aria-expanded="false"
-    id="menu-button"
-    transition:persist
-  >
+  <button aria-controls="primary-nav" aria-expanded="false" id="menu-button">
     <span class="visually-hidden">Menu</span>
 
     <svg
@@ -209,22 +205,24 @@ const { currentPage } = Astro.props;
 </style>
 
 <script>
-  const navToggle = document.querySelector("#menu-button");
-
-  navToggle?.addEventListener("click", () => {
-    const currentToggleState = navToggle.getAttribute("aria-expanded");
-
-    if (currentToggleState === "false") {
-      navToggle.setAttribute("aria-expanded", "true");
-    } else {
-      navToggle.setAttribute("aria-expanded", "closing");
-      setTimeout(() => {
-        navToggle.setAttribute("aria-expanded", "false");
-      }, 500);
-    }
-  });
-
   document.addEventListener("astro:page-load", () => {
+    const navToggle = document.querySelector("#menu-button");
+    navToggle?.addEventListener("click", () => {
+      const currentToggleState = navToggle.getAttribute("aria-expanded");
+
+      if (currentToggleState === "false") {
+        navToggle.setAttribute("aria-expanded", "true");
+      } else {
+        navToggle.setAttribute("aria-expanded", "closing");
+        setTimeout(() => {
+          navToggle.setAttribute("aria-expanded", "false");
+        }, 500);
+      }
+    });
+  });
+  document.addEventListener("astro:page-load", () => {
+    const navToggle = document.querySelector("#menu-button");
+
     const currentToggleState = navToggle?.getAttribute("aria-expanded");
 
     if (currentToggleState === "true") {

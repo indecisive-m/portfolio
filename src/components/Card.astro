@@ -15,7 +15,7 @@ const { href, title, description, tags, publishDate } = Astro.props;
 <li>
   <article>
     <a href={href}>
-      <h2 transition:name={title}>
+      <h2 transition:name={title} transition:persist>
         {title}
       </h2>
     </a>

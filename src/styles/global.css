@@ -17,6 +17,10 @@ html.dark {
   --box-shadow: hsla(0, 0%, 0%, 0.4);
 }
 
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0 auto;
   width: 100%;
@@ -101,6 +105,10 @@ a {
   container-type: inline-size;
 }
 
+body > .footer {
+  position: sticky;
+  top: 100vh;
+}
 .blog-list {
   display: grid;
   margin: 0;
