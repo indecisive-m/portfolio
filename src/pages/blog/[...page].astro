@@ -52,7 +52,7 @@ type PostType = {
     }
   </ul>
 
-  <Pagination page={page} />
+  {page?.total !== 0 && <Pagination page={page} />}
 </Layout>
 
 <style>

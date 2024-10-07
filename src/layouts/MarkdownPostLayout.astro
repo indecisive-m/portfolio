@@ -1,19 +1,54 @@
 ---
 import Layout from "./Layout.astro";
 const { frontmatter } = Astro.props;
+
+const dateObj = new Date(frontmatter.publishDate);
+
+const day = dateObj.getDate();
+const month = dateObj.toLocaleString("en-uk", { month: "long" });
+const year = dateObj.getFullYear();
+
+const nthNumber = (number: number) => {
+  if (number > 3 && number < 21) return "th";
+  switch (number % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
+};
+
+const date = `${day}${nthNumber(day)} ${month} ${year}`;
 ---
 
 <Layout title={frontmatter.title}>
   <h2 transition:name={frontmatter.title}>
     {frontmatter.title}
   </h2>
+  <p>{date}</p>
 
   <slot />
 </Layout>
 
-<style is:global>
+<style>
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+    margin-block-end: 2rem;
+    padding: 0;
+  }
+
+  h2 {
+    padding-block-start: 1rem;
+    font-size: 2.5rem;
   }
 </style>
