@@ -3,39 +3,90 @@ import "../styles/global.css";
 
 const { page } = Astro.props;
 
+let numArray = [];
 console.log(page);
+
+for (let i = 1; i <= page.lastPage; i++) {
+  numArray.push(i);
+}
 ---
 
 <nav>
   <ul>
-    {
+    <!-- {
       page?.url?.first && (
         <li>
           <a href={page?.url?.first}>First</a>
         </li>
       )
-    }
+    } -->
     {
       page?.url?.prev && (
         <li>
-          <a href={page?.url?.prev}>Prev</a>
+          <a href={page?.url?.prev}>
+            <span class="visually-hidden">Previous page</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z" />
+            </svg>
+          </a>
         </li>
       )
     }
+    {
+      numArray.map((number) => {
+        if (number === page.currentPage) {
+          return (
+          <span class="visually-hidden">Current page</span>
+          <li class="current">{number}</li>
+        )
+        }
+
+        if (number === 1) {
+          return (
+            <li>
+              <span class="visually-hidden">First page</span>
+              <a href={page?.url?.first}>{number}</a>
+            </li>
+          );
+        }
+
+        if (number === numArray.length) {
+          return (
+            <li>
+              <span class="visually-hidden">Last page</span>
+              <a href={page?.url?.last}>{number}</a>
+            </li>
+          );
+        }
+        return (
+          <li>
+            <span class="visually-hidden">Page number {number}</span>
+            <a href={`/blog/${number}`}>{number}</a>
+          </li>
+        );
+      })
+    }
+
     {
       page?.url?.next && (
         <li>
-          <a href={page?.url?.next}>Next</a>
+          <a href={page?.url?.next}>
+            <span class="visually-hidden">Next page</span>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z" />
+            </svg>
+          </a>
         </li>
       )
     }
-    {
+    <!-- {
       page?.url?.last && (
         <li>
           <a href={page?.url?.last}>Last</a>
         </li>
       )
-    }
+    } -->
   </ul>
 </nav>
 
@@ -45,6 +96,7 @@ console.log(page);
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
     padding: 0;
     margin: 0;
@@ -52,5 +104,24 @@ console.log(page);
 
   li {
     margin: 0;
+    border-radius: 100%;
+  }
+
+  .current {
+    background-color: var(--heading-color);
+    border-radius: 0.5rem;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+  }
+
+  svg {
+    --size: 1rem;
+    fill: var(--font-color);
+    height: var(--size);
+    width: var(--size);
+
+    &:hover {
+      fill: var(--heading-color);
+    }
   }
 </style>

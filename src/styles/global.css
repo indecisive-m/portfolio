@@ -37,14 +37,14 @@ body {
 h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--heading-color);
 }
 
 h2 {
   margin: 0;
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--heading-color);
 }
 
