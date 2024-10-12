@@ -15,4 +15,14 @@ export default defineConfig({
       wrap: false,
     },
   },
+  vite: {
+    resolve: {
+      alias: [
+        {
+          find: "http",
+          replacement: "node:http",
+        },
+      ],
+    },
+  },
 });
