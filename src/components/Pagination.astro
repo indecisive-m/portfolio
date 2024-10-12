@@ -6,7 +6,7 @@ const { page } = Astro.props;
 let numArray = [];
 console.log(page);
 
-for (let i = 1; i <= page.lastPage; i++) {
+for (let i = 1; i <= page?.lastPage; i++) {
   numArray.push(i);
 }
 
@@ -37,7 +37,7 @@ for (let i = 1; i <= page.lastPage; i++) {
       numArray.map((number) => {
 
 
-        if (number === page.currentPage) {
+        if (number === page?.currentPage) {
           return (
           <span class="visually-hidden">Current page</span>
           <li class="current">{number}</li>

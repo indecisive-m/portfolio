@@ -14,7 +14,9 @@ const pageTitle = "Home";
         I am a mobile developer specialising in Android and React Native with a
         focus on building high-quality, cross-platform mobile applications.
       </p>
-      <a href="/contact"><button><span>Contact Me</span></button></a>
+      <a href="/contact"
+        ><button class="cta-button"><span>Contact Me</span></button></a
+      >
     </div>
     <div class="img-wrapper">
       <Image
@@ -37,7 +39,10 @@ const pageTitle = "Home";
     gap: 1rem;
   }
 
-  h1,
+  h1 {
+    margin-block-end: 2rem;
+  }
+
   p {
     margin-block-end: 4rem;
   }
@@ -63,27 +68,10 @@ const pageTitle = "Home";
     border-radius: 100%;
   }
 
-  button {
-    background-color: var(--heading-color);
-    color: var(--bg-color);
-    font-family: inherit;
-    border: none;
-    border-radius: 5px;
-    padding: 1rem 2rem;
-    cursor: pointer;
-
-    &:hover,
-    :focus-visible {
-      background-color: var(--bg-color);
-      color: var(--heading-color);
-      outline: 1px solid var(--heading-color);
-    }
-  }
-
   @container (max-width: 70ch) {
     .grid {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1rem;
     }
 
     .img {

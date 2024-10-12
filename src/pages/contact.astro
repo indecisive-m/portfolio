@@ -1,10 +1,151 @@
 ---
+export const prerender = false;
+
 import Layout from "@layouts/Layout.astro";
 import "@styles/global.css";
+import { actions, isInputError } from "astro:actions";
 
 const pageTitle = "Contact Me";
+
+const result = Astro.getActionResult(actions.contactForm);
+const inputErrors = isInputError(result?.error) ? result.error.fields : {};
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
 <Layout title={pageTitle}>
   <h1>{pageTitle}</h1>
+  <p>
+    I'm always happy to talk so if you'd like to chat then please use the form
+    below to get in touch.
+  </p>
+
+  <form method="post" action={actions.contactForm}>
+    <label for="name">
+      First Name
+      <input
+        type="text"
+        name="name"
+        id="name"
+        autocomplete="name"
+        required
+        transition:persist
+      />
+    </label>
+    <label for="email">
+      Email Address
+
+      <input
+        type="email"
+        name="email"
+        id="email"
+        autocomplete="email"
+        aria-describedby="error"
+        transition:persist
+        class:list={inputErrors.email ? "error" : undefined}
+      />
+    </label>
+    <label for="message" class="grid"> Message </label>
+    <div class="grow-wrap">
+      <textarea
+        name="message"
+        id="message"
+        required
+        oninput="this.parentNode.dataset.replicatedValue = this.value"
+        transition:persist></textarea>
+    </div>
+
+    <div
+      class="cf-turnstile"
+      id="cf-turnstile"
+      data-sitekey={siteKey}
+      data-size="compact"
+    >
+    </div>
+
+    <button class="cta-button">Submit</button>
+  </form>
+
+  {result?.data && !result?.error && <p>Form Recieved</p>}
+  <!-- {result?.error && <p>Form Error</p>} -->
 </Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
+    turnstile.render("#cf-turnstile", {
+      sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
+    });
+  });
+</script>
+<style>
+  form {
+    display: grid;
+    max-width: 60ch;
+    gap: 1rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  input {
+    background-color: var(--container-color);
+    color: var(--font-color);
+    border: none;
+    padding: 0.75rem;
+    font-family: inherit;
+
+    &:focus {
+      outline: 1px solid var(--heading-color);
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px var(--container-color) inset;
+    -webkit-text-fill-color: var(--font-color);
+  }
+
+  .grow-wrap {
+    display: grid;
+  }
+
+  .grow-wrap::after {
+    content: attr(data-replicated-value) " ";
+    white-space: pre-wrap;
+    visibility: hidden;
+  }
+
+  .grow-wrap > textarea {
+    resize: none;
+    overflow: hidden;
+  }
+
+  .grow-wrap > textarea,
+  .grow-wrap::after {
+    /* Identical styling required!! */
+    /* border: 1px solid black; */
+    padding: 0.5rem;
+    font: inherit;
+
+    /* Place on top of each other */
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  textarea {
+    padding: 0.5rem;
+    background-color: var(--container-color);
+    color: var(--font-color);
+    border: none;
+
+    &:focus {
+      outline: 1px solid var(--heading-color);
+    }
+  }
+
+  .error {
+    background-color: red;
+  }
+</style>

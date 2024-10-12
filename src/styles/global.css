@@ -48,6 +48,7 @@ h2 {
   color: var(--heading-color);
 }
 
+label,
 p {
   color: var(--font-color);
   font-size: 1rem;
@@ -96,6 +97,10 @@ a {
     color: var(--heading-color);
   }
 
+  &:focus {
+    outline: 1px solid var(--heading-color);
+  }
+
   &:active {
     text-decoration: none;
   }
@@ -120,6 +125,23 @@ body > .footer {
 
 .blog-list li:first-child {
   grid-column-end: span 3;
+}
+
+.cta-button {
+  background-color: var(--heading-color);
+  color: var(--bg-color);
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+
+  &:hover,
+  :focus-visible {
+    background-color: var(--bg-color);
+    color: var(--heading-color);
+    outline: 1px solid var(--heading-color);
+  }
 }
 
 @container (width < 80ch) {
