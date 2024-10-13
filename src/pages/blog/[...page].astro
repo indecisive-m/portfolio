@@ -39,7 +39,7 @@ const page = Astro.props.page;
 ---
 
 <Layout title={pageTitle}>
-  <ul class="blog-list">
+  <ul class:list={page?.total === 1 ? "single-blog" : "blog-list"}>
     {
       page?.data?.map((post: PostType) => (
         <Card
@@ -59,6 +59,12 @@ const page = Astro.props.page;
 <style>
   .blog-list {
     padding-block: 2rem;
+  }
+
+  .single-blog {
+    padding: 0;
+    padding-block: 2rem;
+    margin: 0;
   }
   .blog-list :global(li:first-child) {
     grid-column-end: span 2;

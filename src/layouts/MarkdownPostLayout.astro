@@ -26,9 +26,9 @@ const date = `${day}${nthNumber(day)} ${month} ${year}`;
 ---
 
 <Layout title={frontmatter.title}>
-  <h2 transition:name={frontmatter.title}>
+  <h1 transition:name={frontmatter.title}>
     {frontmatter.title}
-  </h2>
+  </h1>
   <p>{date}</p>
 
   <slot />
@@ -47,7 +47,7 @@ const date = `${day}${nthNumber(day)} ${month} ${year}`;
     padding: 0;
   }
 
-  h2 {
+  h1 {
     padding-block-start: 1rem;
     font-size: 2.5rem;
   }

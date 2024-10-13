@@ -5,7 +5,6 @@ import ThemeIcon from "./ThemeIcon.astro";
 const { currentPage } = Astro.props;
 ---
 
-<!-- transition:persist -->
 <header>
   <button aria-controls="primary-nav" aria-expanded="false" id="menu-button">
     <span class="visually-hidden">Menu</span>
@@ -51,14 +50,14 @@ const { currentPage } = Astro.props;
   </button>
 
   <nav id="primary-nav">
-    <a href="/" class:list={{ current: currentPage === "Home" }}> Home </a>
+    <a href="/" class:list={{ current: currentPage === "Home" }}>Home</a>
     <!-- <a href="/about/" class:list={{ current: currentPage === "About" }}>
       About
     </a>
     <a href="/projects/" class:list={{ current: currentPage === "Projects" }}>
       Projects
     </a> -->
-    <a href="/blog/" class:list={{ current: currentPage === "Blog" }}> Blog </a>
+    <a href="/blog/" class:list={{ current: currentPage === "Blog" }}>Blog</a>
     {
       /* <a href="/tags/" class:list={{ current: currentPage === "Tag Index" }}>
           Tags
@@ -79,6 +78,10 @@ const { currentPage } = Astro.props;
   a {
     padding-inline-end: 1rem;
     position: relative;
+
+    &:link {
+      text-decoration: none;
+    }
   }
 
   .current {
