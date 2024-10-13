@@ -10,7 +10,7 @@ const pageTitle = "Contact Me";
 const result = Astro.getActionResult(actions.contactForm);
 // const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
-const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
 ---
 
 <Layout title={pageTitle}>
@@ -69,12 +69,12 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   <!-- {result?.error && <p>Form Error</p>} -->
 </Layout>
 
-<script define:vars={{ siteKey }} is:inline>
+<script>
   document.addEventListener("astro:page-load", () => {
     //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
     turnstile.render("#cf-turnstile", {
       // sitekey: "1x00000000000000000000AA", -- TEST KEY ALWAYS PASSES
-      sitekey: sitekey,
+      sitekey: "0x4AAAAAAAxHyZXwvwAbQxOX",
     });
   });
 </script>
