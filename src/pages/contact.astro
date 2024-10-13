@@ -69,12 +69,12 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   <!-- {result?.error && <p>Form Error</p>} -->
 </Layout>
 
-<script>
+<script define:vars={{ siteKey }} is:inline>
   document.addEventListener("astro:page-load", () => {
     //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
     turnstile.render("#cf-turnstile", {
       // sitekey: "1x00000000000000000000AA", -- TEST KEY ALWAYS PASSES
-      sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
+      sitekey: sitekey,
     });
   });
 </script>
