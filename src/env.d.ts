@@ -3,8 +3,8 @@
 interface ImportMetaEnv {
   readonly TURNSTILE_SECRET_KEY: string;
   readonly PUBLIC_TURNSTILE_SITE_KEY: string;
-  readonly MAILTRAP_TOKEN: string;
   readonly EMAIL_ADDRESS: string;
+  readonly RESEND_TOKEN: string;
   // more env variables...
 }
 

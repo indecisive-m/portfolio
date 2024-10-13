@@ -8,7 +8,7 @@ import { actions, isInputError } from "astro:actions";
 const pageTitle = "Contact Me";
 
 const result = Astro.getActionResult(actions.contactForm);
-const inputErrors = isInputError(result?.error) ? result.error.fields : {};
+// const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
@@ -42,10 +42,9 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         autocomplete="email"
         aria-describedby="error"
         transition:persist
-        class:list={inputErrors.email ? "error" : undefined}
       />
     </label>
-    <label for="message" class="grid"> Message </label>
+    <label for="message" class="grid">Message</label>
     <div class="grow-wrap">
       <textarea
         name="message"
@@ -74,6 +73,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   document.addEventListener("astro:page-load", () => {
     //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
     turnstile.render("#cf-turnstile", {
+      // sitekey: "1x00000000000000000000AA", -- TEST KEY ALWAYS PASSES
       sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
     });
   });
