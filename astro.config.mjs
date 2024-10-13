@@ -7,6 +7,11 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   output: "hybrid",
   adapter: cloudflare(),
+  vite: {
+    define: {
+      "process.env": process.env,
+    },
+  },
   site: "https://mikewatkins.dev",
   integrations: [sitemap()],
   markdown: {
