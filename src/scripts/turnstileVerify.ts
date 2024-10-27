@@ -6,7 +6,7 @@ const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 const SECRET_KEY = import.meta.env.TURNSTILE_SECRET_KEY;
 
-// const TEST_KEY = "1x0000000000000000000000000000000AA"; -- TEST KEY ALWAYS PASSES
+// const TEST_KEY = "1x0000000000000000000000000000000AA"; // TEST KEY ALWAYS PASSES
 
 export async function turnstileVerify({ request }: ActionAPIContext) {
   const data = await request.formData();

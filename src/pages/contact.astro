@@ -14,58 +14,67 @@ const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
 ---
 
 <Layout title={pageTitle}>
-  <h1>{pageTitle}</h1>
+
+
+  {
+    result?.data && !result?.error ? (
+        <h1>Thank you!</h1>
+        <p>I have received your message and will be in touch shortly</p>
+    ) : (
+    <h1>{pageTitle}</h1>
   <p>
     I'm always happy to talk so if you'd like to chat then please use the form
     below to get in touch.
   </p>
+      <form method="post" action={actions.contactForm}>
+        <label for="name">
+          First Name
+          <input
+            type="text"
+            name="name"
+            id="name"
+            autocomplete="name"
+            required
+            transition:persist
+          />
+        </label>
+        <label for="email">
+          Email Address
+          <input
+            type="email"
+            name="email"
+            id="email"
+            autocomplete="email"
+            aria-describedby="error"
+            transition:persist
+          />
+        </label>
+        <label for="message" class="grid">
+          Message
+        </label>
+        <div class="grow-wrap">
+          <textarea
+            name="message"
+            id="message"
+            required
+            oninput="this.parentNode.dataset.replicatedValue = this.value"
+            transition:persist
+          />
+        </div>
 
-  <form method="post" action={actions.contactForm}>
-    <label for="name">
-      First Name
-      <input
-        type="text"
-        name="name"
-        id="name"
-        autocomplete="name"
-        required
-        transition:persist
-      />
-    </label>
-    <label for="email">
-      Email Address
+        <div
+          class="cf-turnstile"
+          id="cf-turnstile"
+          data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+          data-size="compact"
+        />
 
-      <input
-        type="email"
-        name="email"
-        id="email"
-        autocomplete="email"
-        aria-describedby="error"
-        transition:persist
-      />
-    </label>
-    <label for="message" class="grid">Message</label>
-    <div class="grow-wrap">
-      <textarea
-        name="message"
-        id="message"
-        required
-        oninput="this.parentNode.dataset.replicatedValue = this.value"
-        transition:persist></textarea>
-    </div>
+        <button class="cta-button">Submit</button>
+      </form>
+    )
+  }
 
-    <div
-      class="cf-turnstile"
-      id="cf-turnstile"
-      data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-      data-size="compact"
-    >
-    </div>
-
-    <button class="cta-button">Submit</button>
-  </form>
-
-  {result?.data && !result?.error && <p>Form Recieved</p>}
+  <!-- {result?.data && !result?.error && } -->
   <!-- {result?.error && <p>Form Error</p>} -->
 </Layout>
 
@@ -73,7 +82,7 @@ const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
   document.addEventListener("astro:page-load", () => {
     //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
     turnstile.render("#cf-turnstile", {
-      // sitekey: "1x00000000000000000000AA", -- TEST KEY ALWAYS PASSES
+      // sitekey: "1x00000000000000000000AA", // -- TEST KEY ALWAYS PASSES
       sitekey: "0x4AAAAAAAxHyZXwvwAbQxOX",
     });
   });
@@ -148,4 +157,5 @@ const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
   .error {
     background-color: red;
   }
+
 </style>
