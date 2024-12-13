@@ -43,7 +43,7 @@ const page = Astro.props.page;
     {
       page?.data?.map((post: PostType) => (
         <Card
-          href={`/blog/${post.slug}`}
+          href={`${post.slug}`}
           title={post.data.title}
           description={post.data.description}
           tags={post.data.tags}

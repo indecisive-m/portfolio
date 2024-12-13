@@ -5,7 +5,6 @@ import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  output: "hybrid",
   adapter: cloudflare(),
   vite: {
     define: {

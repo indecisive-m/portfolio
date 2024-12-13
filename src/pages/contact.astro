@@ -83,7 +83,7 @@ const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
     //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
     turnstile.render("#cf-turnstile", {
       // sitekey: "1x00000000000000000000AA", // -- TEST KEY ALWAYS PASSES
-      sitekey: "0x4AAAAAAAxHyZXwvwAbQxOX",
+      sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
     });
   });
 </script>
