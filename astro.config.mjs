@@ -4,6 +4,8 @@ import cloudflare from "@astrojs/cloudflare";
 
 import sitemap from "@astrojs/sitemap";
 
+import mdx from "@astrojs/mdx";
+
 export default defineConfig({
   adapter: cloudflare(),
   vite: {
@@ -12,7 +14,7 @@ export default defineConfig({
     },
   },
   site: "https://mikewatkins.dev",
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
   markdown: {
     shikiConfig: {
       theme: "one-dark-pro",
