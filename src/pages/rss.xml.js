@@ -6,6 +6,15 @@ export async function GET(context) {
   return rss({
     title: "Mike Watkins' Blog",
     description: "My journey learning to code.",
+    customData: `
+      <image>
+        <url>https://mikewatkins.dev/me.jpg</url>
+        <title>Mike Watkins' Blog</title>
+        <link>https://mikewatkins.dev/</link>
+        <width>32</width>
+        <height>32</height>
+      </image>
+    `,
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.publishDate,
