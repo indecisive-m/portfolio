@@ -5,6 +5,10 @@
   "assets": {
     "directory": "./dist/client/",
     "not_found_handling": "404-page",
-    "html_handling": "drop-trailing-slash"
+    "html_handling": "auto-trailing-slash"
+  },
+  "vars": {
+    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAAxHyZXwvwAbQxOX",
+    "EMAIL_ADDRESS": "mike@mikewatkins.dev"
   }
 }
