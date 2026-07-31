@@ -4,6 +4,7 @@ publishDate: 2024-10-13
 description: "A small introduction into who I am and what plans I have for this blog"
 tags: ["blogging"]
 slug: introduction
+draft: true
 ---
 
 Hello everyone. This is a short blog post to introduce myself and my hopes and plans for this blog.

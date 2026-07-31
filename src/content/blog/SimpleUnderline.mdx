@@ -1,0 +1,65 @@
+---
+title: "A simple underline trick"
+publishDate: 2026-07-31
+description: "A simple underline trick"
+tags: ["android", "jetpack compose"]
+slug: simple-underline-trick
+draft: false
+---
+
+import { Image } from "astro:assets";
+import underlinedtext from "../../assets/images/underlinedtext.png";
+import fullwidth from "../../assets/images/fullwidthunderlinetext.png";
+import nicely from "../../assets/images/nicelyunderlinedtext.png";
+
+The other day I was working on my movie search app and I was building a review composable. It was a very simple Card with a Column within it showing the review author and the review contents. I wanted to underline the author but when I used TextDecoration.Underline I didn't like the outcome, the spacing for the underline was very close and the same colour as the text.
+
+```kt
+
+  Text(
+      text = review.author,
+      style = MaterialTheme.typography.titleMedium,
+      letterSpacing = TextUnit(1.2F, TextUnitType.Sp),
+      color = MaterialTheme.colorScheme.onSecondary,
+      textDecoration = TextDecoration.Underline
+  )
+
+```
+
+<figure>
+  <Image src={underlinedtext} alt="" width="400px" />
+  <figcaption>I think the underline is too close to the text</figcaption>
+</figure>
+
+Instead I decided to use a HorizontalDivider but this will automatically .fillMaxWidth() which again I did not want for this card as I only wanted the text underlined.
+
+<figure>
+  <Image src={fullwidth} alt="" width="400px" />
+  <figcaption>Nice underline but I don't want it full width</figcaption>
+</figure>
+
+My solution was to wrap the author Text and the HorizontalDivider in a Column and add a modifier of .width(IntrinsicSize.Max) to this Column. This measures the width of the items within the column and sets the width of the column to the maximum intrinsic size of the items. Essentially it measures the length of the text and sets the width to the max length needed and not more. In this case it adds an underline at the perfect width and lets me customise this underline's thickness and colour as required.
+
+```kt
+
+  Column(
+    Modifier.width(IntrinsicSize.Max)
+  ) {
+      Text(
+          text = review.author,
+          style = MaterialTheme.typography.titleMedium,
+          letterSpacing = TextUnit(1.2F, TextUnitType.Sp),
+          color = MaterialTheme.colorScheme.onSecondary,
+      )
+      HorizontalDivider(
+          thickness = 2.dp,
+          color = MaterialTheme.colorScheme.outline,
+          modifier = Modifier.fillMaxWidth()
+      )
+  }
+```
+
+<figure>
+  <Image src={nicely} alt="" width="400px" />
+  <figcaption>The final nicely underlined text</figcaption>
+</figure>
