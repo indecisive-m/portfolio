@@ -8,6 +8,10 @@ import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   adapter: cloudflare(),
+  trailingSlash: "always",
+  build: {
+    format: "directory",
+  },
   vite: {
     define: {
       "process.env": process.env,
