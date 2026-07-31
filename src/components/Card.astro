@@ -20,9 +20,14 @@ const { href, title, description, tags, publishDate } = Astro.props;
       </h2>
     </a>
     <p>{description}</p>
-    <p class="small">
-      {publishDate.toDateString().split(" ").slice(1).join(" ")}
-    </p>
+    <div class="flex">
+      <p class="small">
+        {publishDate.toDateString().split(" ").slice(1).join(" ")}
+      </p>
+      <div class="flex">
+        {tags.map((item) => <p class="small tag-item">{item}</p>)}
+      </div>
+    </div>
   </article>
 </li>
 
@@ -47,6 +52,14 @@ const { href, title, description, tags, publishDate } = Astro.props;
 
     &:has(a:hover) {
       scale: 1.02;
+    }
+    .flex {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .tag-item {
+      margin-inline: 0.5rem;
     }
   }
 </style>

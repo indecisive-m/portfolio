@@ -3,14 +3,13 @@ export const prerender = false;
 
 import Layout from "@layouts/Layout.astro";
 import "@styles/global.css";
-import { actions, isInputError } from "astro:actions";
+import { actions } from "astro:actions";
 
 const pageTitle = "Contact Me";
 
 const result = Astro.getActionResult(actions.contactForm);
 // const inputErrors = isInputError(result?.error) ? result.error.fields : {};
 
-const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
 ---
 
 <Layout title={pageTitle}>
@@ -80,7 +79,7 @@ const siteKey = "0x4AAAAAAAxHyZXwvwAbQxOX";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    //@ts-expect-error -- This won't find turnstile and I currently don't know how to fix it.
+    // @ts-expect-error
     turnstile.render("#cf-turnstile", {
       // sitekey: "1x00000000000000000000AA", // -- TEST KEY ALWAYS PASSES
       sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,

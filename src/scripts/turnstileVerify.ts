@@ -1,4 +1,3 @@
-import type { APIContext, APIRoute } from "astro";
 import { ActionError, type ActionAPIContext } from "astro:actions";
 import { sendEmail } from "src/scripts/sendEmail";
 

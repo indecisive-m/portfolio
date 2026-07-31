@@ -5,7 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 import type { InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 
 type PostType = {
-  slug: string;
+  id: string;
   data: {
     title: string;
     description: string;
@@ -50,7 +50,7 @@ const { posts } = Astro.props as Props;
     {
       posts.map((post: PostType) => (
         <Card
-          href={`/blog/${post.slug}`}
+          href={`/blog/${post.id}`}
           title={post.data.title}
           tags={[tag]}
           description={post.data.description}

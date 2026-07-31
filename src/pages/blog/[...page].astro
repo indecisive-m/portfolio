@@ -8,7 +8,7 @@ import Pagination from "@components/Pagination.astro";
 const pageTitle = "Blog";
 
 type PostType = {
-  slug: string;
+  id: string;
   data: {
     title: string;
     description: string;
@@ -49,7 +49,7 @@ const page = Astro.props.page;
     {
       page?.data?.map((post: PostType) => (
         <Card
-          href={`${post.slug}`}
+          href={`${post.id}`}
           title={post.data.title}
           description={post.data.description}
           tags={post.data.tags}
