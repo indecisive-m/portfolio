@@ -10,13 +10,19 @@ export async function sendEmail(
   emailAddress: string,
   message: string,
 ) {
-  await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: MY_EMAIL,
     to: MY_EMAIL,
     replyTo: emailAddress,
     subject: "Contact Form",
     text: message,
   });
+
+  console.log("resend:", { data, error });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   return { name, emailAddress, message };
 }

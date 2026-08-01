@@ -42,8 +42,10 @@ export async function turnstileVerify({ request }: ActionAPIContext) {
 
   const outcome = await result.json();
 
+  console.log("got through turnstile", outcome);
+
   if (outcome.success) {
-    console.log(await outcome.message);
+    console.log("sending email");
     return sendEmail(
       name ?? "default",
       email ?? "default",
