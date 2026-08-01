@@ -8,7 +8,7 @@
     "html_handling": "auto-trailing-slash"
   },
   "vars": {
-    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAAxHyZXwvwAbQxOX",
+    "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAAxHyZXwvwAbQxOX",
     "EMAIL_ADDRESS": "mike@mikewatkins.dev"
   }
 }

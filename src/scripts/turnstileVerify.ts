@@ -1,9 +1,10 @@
 import { ActionError, type ActionAPIContext } from "astro:actions";
 import { sendEmail } from "src/scripts/sendEmail";
+import { TURNSTILE_SECRET_KEY } from "astro:env/server";
 
 const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
-const SECRET_KEY = import.meta.env.TURNSTILE_SECRET_KEY;
+const SECRET_KEY = TURNSTILE_SECRET_KEY;
 
 // const TEST_KEY = "1x0000000000000000000000000000000AA"; // TEST KEY ALWAYS PASSES
 
@@ -12,7 +13,7 @@ export async function turnstileVerify({ request }: ActionAPIContext) {
 
   const token = data.get("cf-turnstile-response");
 
-  if (!token || !import.meta.env.TURNSTILE_SECRET_KEY) {
+  if (!token || !TURNSTILE_SECRET_KEY) {
     throw new ActionError({
       code: "UNAUTHORIZED",
       message: "Please include TURNSTILE_SECRET_TOKEN in your .env file.",
@@ -40,6 +41,8 @@ export async function turnstileVerify({ request }: ActionAPIContext) {
   }
 
   const outcome = await result.json();
+
+  console.log(await outcome);
 
   if (outcome.success) {
     return sendEmail(

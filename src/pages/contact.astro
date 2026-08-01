@@ -4,6 +4,8 @@ export const prerender = false;
 import Layout from "@layouts/Layout.astro";
 import "@styles/global.css";
 import { actions } from "astro:actions";
+import {PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
+
 
 const pageTitle = "Contact Me";
 
@@ -64,7 +66,7 @@ const result = Astro.getActionResult(actions.contactForm);
         <div
           class="cf-turnstile"
           id="cf-turnstile"
-          data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+          data-sitekey={PUBLIC_TURNSTILE_SITE_KEY}
           data-size="compact"
         />
 
@@ -78,11 +80,15 @@ const result = Astro.getActionResult(actions.contactForm);
 </Layout>
 
 <script>
+
+import {PUBLIC_TEST_KEY, PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
+
+
   document.addEventListener("astro:page-load", () => {
     // @ts-expect-error
     turnstile.render("#cf-turnstile", {
-      // sitekey: "1x00000000000000000000AA", // -- TEST KEY ALWAYS PASSES
-      sitekey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY,
+      // sitekey: PUBLIC_TEST_KEY, // -- TEST KEY ALWAYS PASSES
+      sitekey: PUBLIC_TURNSTILE_SITE_KEY,
     });
   });
 </script>
