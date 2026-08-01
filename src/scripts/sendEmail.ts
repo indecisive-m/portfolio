@@ -1,9 +1,15 @@
 import { Resend } from "resend";
 import { EMAIL_ADDRESS, RESEND_TOKEN } from "astro:env/server";
+import { email } from "astro/zod";
 
 const resend = new Resend(RESEND_TOKEN);
 
 const MY_EMAIL = EMAIL_ADDRESS;
+
+console.log("runtime env", {
+  resend: !!RESEND_TOKEN,
+  email: MY_EMAIL,
+});
 
 export async function sendEmail(
   name: string,
