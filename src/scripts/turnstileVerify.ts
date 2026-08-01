@@ -13,7 +13,7 @@ export async function turnstileVerify({ request }: ActionAPIContext) {
 
   const token = data.get("cf-turnstile-response");
 
-  if (!token || !TURNSTILE_SECRET_KEY) {
+  if (!token || !SECRET_KEY) {
     throw new ActionError({
       code: "UNAUTHORIZED",
       message: "Please include TURNSTILE_SECRET_TOKEN in your .env file.",
@@ -42,13 +42,16 @@ export async function turnstileVerify({ request }: ActionAPIContext) {
 
   const outcome = await result.json();
 
-  console.log(await outcome);
-
   if (outcome.success) {
+    console.log(await outcome.message);
     return sendEmail(
       name ?? "default",
       email ?? "default",
       message ?? "default",
     );
+  }
+
+  if (outcome.success === false) {
+    console.log(await outcome.message);
   }
 }
