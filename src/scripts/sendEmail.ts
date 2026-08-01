@@ -6,11 +6,6 @@ const resend = new Resend(RESEND_TOKEN);
 
 const MY_EMAIL = EMAIL_ADDRESS;
 
-console.log("runtime env", {
-  resend: !!RESEND_TOKEN,
-  email: MY_EMAIL,
-});
-
 export async function sendEmail(
   name: string,
   emailAddress: string,
@@ -23,8 +18,6 @@ export async function sendEmail(
     subject: "Contact Form",
     text: message,
   });
-
-  console.log("resend:", { data, error });
 
   if (error) {
     throw new Error(error.message);
