@@ -81,13 +81,13 @@ const result = Astro.getActionResult(actions.contactForm);
 
 <script>
 
-import {PUBLIC_TEST_KEY, PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
+import {PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
 
 
   document.addEventListener("astro:page-load", () => {
     // @ts-expect-error
     turnstile.render("#cf-turnstile", {
-      // sitekey: PUBLIC_TEST_KEY, // -- TEST KEY ALWAYS PASSES
+      // sitekey: "1x00000000000000000000AA", // -- TEST KEY ALWAYS PASSES
       sitekey: PUBLIC_TURNSTILE_SITE_KEY,
     });
   });

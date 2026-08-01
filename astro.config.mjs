@@ -10,7 +10,6 @@ export default defineConfig({
   adapter: cloudflare(),
   env: {
     schema: {
-      PUBLIC_TEST_KEY: envField.string({ context: "client", access: "public" }),
       PUBLIC_TURNSTILE_SITE_KEY: envField.string({
         context: "client",
         access: "public",
