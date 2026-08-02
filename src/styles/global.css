@@ -128,8 +128,10 @@ li::marker {
 
 body > .footer {
   position: sticky;
+  display: flex;
   top: 100vh;
   padding-block: 2rem;
+  align-items: center;
 }
 
 .blog-list {
