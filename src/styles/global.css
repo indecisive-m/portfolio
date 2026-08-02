@@ -140,14 +140,14 @@ body > .footer {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
-.blog-img {
-  max-width: 100%;
-}
 
 .blog-list li:first-child {
   grid-column-end: span 3;
 }
 
+.blog-img {
+  max-width: minmax(100px, 400px);
+}
 .cta-button {
   background-color: var(--heading-color);
   color: var(--bg-color);
@@ -186,5 +186,9 @@ body > .footer {
 
   .blog-list li:first-child {
     grid-column-end: span 1;
+  }
+  .blog-img {
+    padding-inline: 0.5rem;
+    max-width: 90vw;
   }
 }

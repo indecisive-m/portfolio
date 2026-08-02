@@ -20,12 +20,12 @@ const { href, title, description, tags, publishDate } = Astro.props;
       </h2>
     </a>
     <p>{description}</p>
-    <div class="flex">
+    <div class="tag-wrapper">
       <p class="small">
         {publishDate.toDateString().split(" ").slice(1).join(" ")}
       </p>
       <div class="flex">
-        {tags.map((item) => <p class="small tag-item">{item}</p>)}
+        {tags.map((item) => <p class="small">{item}</p>)}
       </div>
     </div>
   </article>
@@ -56,10 +56,18 @@ const { href, title, description, tags, publishDate } = Astro.props;
     .flex {
       display: flex;
       justify-content: space-between;
+      gap: 0.5rem;
     }
+  }
 
-    .tag-item {
-      margin-inline: 0.5rem;
+  .tag-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @container (max-width: 70ch) {
+    .tag-wrapper {
+      display: grid;
     }
   }
 </style>

@@ -27,14 +27,14 @@ The other day I was working on my movie search app and I was building a review c
 ```
 
 <figure>
-  <Image src={underlinedtext} alt="" width="400px" />
+  <Image src={underlinedtext} alt="" class="blog-img" />
   <figcaption>I think the underline is too close to the text</figcaption>
 </figure>
 
 Instead I decided to use a HorizontalDivider but this will automatically .fillMaxWidth() which again I did not want for this card as I only wanted the text underlined.
 
 <figure>
-  <Image src={fullwidth} alt="" width="400px" />
+  <Image src={fullwidth} alt="" class="blog-img" />
   <figcaption>Nice underline but I don't want it full width</figcaption>
 </figure>
 
@@ -60,6 +60,6 @@ My solution was to wrap the author Text and the HorizontalDivider in a Column an
 ```
 
 <figure>
-  <Image src={nicely} alt="" width="400px" />
+  <Image src={nicely} alt="" class="blog-img" />
   <figcaption>The final nicely underlined text</figcaption>
 </figure>
