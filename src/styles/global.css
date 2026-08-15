@@ -4,7 +4,8 @@
   --third-color: #9b633b;
   --fourth-color: #70533e;
   --font-color: #463a32;
-  --bg-color: #fffcfa;
+  /*--bg-color: #fffcfa;*/
+  --bg-color: #faebe1;
   --container-color: #f9f1ed;
   --box-shadow: hsla(0, 0%, 100%, 0.4);
 }
@@ -150,6 +151,7 @@ body > .footer {
 .blog-img {
   max-width: minmax(100px, 400px);
 }
+
 .cta-button {
   background-color: var(--heading-color);
   color: var(--bg-color);

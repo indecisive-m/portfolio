@@ -10,14 +10,17 @@ const pageTitle = "Home";
 <Layout title={pageTitle}>
   <div class="grid">
     <div>
-      <h1>Hey, I'm Mike</h1>
-      <p>
+      <div class="title-wrapper">
+        <h1 class="hey">Hey,</h1>
+        <h1 class="text">I'm Mike</h1>
+      </div>
+      <p class="paragraph">
         I am a mobile developer specialising in Android and React Native with a
         focus on building high-quality, cross-platform mobile applications.
       </p>
-      <a href="/contact"
-        ><button class="cta-button"><span>Contact Me</span></button></a
-      >
+      <a href="/contact">
+        <button class="button cta-button"><span>Contact Me</span></button>
+      </a>
     </div>
     <div class="img-wrapper">
       <Image
@@ -40,12 +43,17 @@ const pageTitle = "Home";
     gap: 1rem;
   }
 
-  h1 {
-    margin-block-end: 2rem;
+  p {
+    margin: 0;
+    margin-block-end: 4rem;
   }
 
-  p {
-    margin-block-end: 4rem;
+  .paragraph {
+    animation-name: fade-in;
+    animation-duration: 1.25s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0%;
   }
 
   .img-wrapper {
@@ -67,6 +75,78 @@ const pageTitle = "Home";
     aspect-ratio: 1/1;
     width: 100%;
     border-radius: 100%;
+  }
+
+  .title-wrapper {
+    display: flex;
+    gap: 1ch;
+    background: linear-gradient(
+      0.25turn,
+      var(--heading-color),
+      lightblue,
+      blue
+    );
+    background-clip: text;
+    width: fit-content;
+  }
+
+  .hey {
+    animation-name: flip;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0%;
+    transform: rotateX(-0.5turn) translateY(-100%) scaleY(0);
+    color: transparent;
+  }
+
+  .text {
+    animation-name: flip;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    opactity: 0%;
+    transform: rotateX(-0.5turn) translateY(-100%) scaleY(0);
+    color: transparent;
+  }
+
+  .button {
+    animation-name: fade-in;
+    animation-duration: 1.25s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0%;
+    background-color: var(--heading-color);
+    color: var(--bg-color);
+    font-family: inherit;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+  }
+
+  @keyframes flip {
+    50% {
+      transform: rotateX(-0.5turn) translateY(-50%) scaleY(0%);
+      opacity: 10%;
+    }
+
+    75% {
+      opacity: 20%;
+    }
+    100% {
+      transform: rotateX(-1turn) translateY(0%) scaleY(100%);
+      opacity: 100%;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0%;
+    }
+
+    to {
+      opacity: 100%;
+    }
   }
 
   @container (max-width: 70ch) {
