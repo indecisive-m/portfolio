@@ -1,21 +1,20 @@
 :root {
-  --heading-color: #be5409;
+  color-scheme: light dark;
 
-  --third-color: #9b633b;
-  --fourth-color: #70533e;
-  --font-color: #463a32;
+  --light-heading-color: #be5409;
+  --light-third-color: #9b633b;
+  --light-fourth-color: #70533e;
+  --light-font-color: #463a32;
   /*--bg-color: #fffcfa;*/
-  --bg-color: #faebe1;
-  --container-color: #f9f1ed;
-  --box-shadow: hsla(0, 0%, 100%, 0.4);
-}
+  --light-bg-color: #faebe1;
+  --light-container-color: #f9f1ed;
+  --light-box-shadow: hsla(0, 0%, 100%, 0.4);
 
-html.dark {
-  --bg-color: #1c1917;
-  --heading-color: #f58a3d;
-  --font-color: #dcbaa3;
-  --container-color: #242220;
-  --box-shadow: hsla(0, 0%, 0%, 0.4);
+  --dark-bg-color: #1c1917;
+  --dark-heading-color: #f58a3d;
+  --dark-font-color: #dcbaa3;
+  --dark-container-color: #242220;
+  --dark-box-shadow: hsla(0, 0%, 0%, 0.4);
 }
 
 html,
@@ -28,7 +27,7 @@ body {
   max-width: 100ch;
   padding: 2rem;
   line-height: 1.5;
-  background-color: var(--bg-color);
+  background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
 }
 
 * {
@@ -42,7 +41,7 @@ figure {
 }
 
 figcaption {
-  color: var(--font-color);
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
   font-size: 0.75rem;
   text-align: center;
 }
@@ -51,19 +50,19 @@ h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
   font-weight: 400;
-  color: var(--heading-color);
+  color: light-dark(var(--light-heading-color), var(--dark-heading-color));
 }
 
 h2 {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 400;
-  color: var(--heading-color);
+  color: light-dark(var(--light-heading-color), var(--dark-heading-color));
 }
 
 label,
 p {
-  color: var(--font-color);
+  color: light-dark(var(--light-font-color), var(--dark-font-color));
   font-size: 1rem;
 }
 
@@ -95,23 +94,24 @@ a {
   &:link {
     text-decoration: underline;
     background-color: transparent;
-    color: var(--font-color);
+    color: light-dark(var(--light-font-color), var(--dark-font-color));
     font-size: 1.2em;
     position: relative;
   }
 
   &:visited {
     text-decoration: none;
-    color: var(--font-color);
+    color: light-dark(var(--light-font-color), var(--dark-font-color));
   }
 
   &:hover,
   &:focus-visible {
-    color: var(--heading-color);
+    color: light-dark(var(--light-heading-color), var(--dark-heading-color));
   }
 
   &:focus-visible {
-    outline: 1px solid var(--heading-color);
+    outline: 1px solid
+      light-dark(var(--light-heading-color), var(--dark-heading-color));
   }
 
   &:active {
@@ -120,7 +120,7 @@ a {
 }
 
 li::marker {
-  color: var(--heading-color);
+  color: light-dark(var(--light-heading-color), var(--dark-heading-color));
 }
 
 .grid {
@@ -153,8 +153,12 @@ body > .footer {
 }
 
 .cta-button {
-  background-color: var(--heading-color);
-  color: var(--bg-color);
+  background-color: light-dark(
+    var(--light-heading-color),
+    var(--dark-heading-color)
+  );
+
+  color: light-dark(var(--light-bg-color), var(--dark-bg-color));
   font-family: inherit;
   border: none;
   border-radius: 5px;
@@ -163,9 +167,10 @@ body > .footer {
 
   &:hover,
   :focus-visible {
-    background-color: var(--bg-color);
-    color: var(--heading-color);
-    outline: 1px solid var(--heading-color);
+    background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
+    color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+    outline: 1px solid
+      light-dark(var(--light-heading-color), var(--dark-heading-color));
   }
 }
 

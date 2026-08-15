@@ -86,7 +86,7 @@ const { currentPage } = Astro.props;
 
   .current {
     position: relative;
-    color: var(--heading-color);
+    color: light-dark(var(--light-heading-color), var(--dark-heading-color));
     text-decoration: double;
 
     &::before {
@@ -94,7 +94,7 @@ const { currentPage } = Astro.props;
       top: 0;
       left: -1rem;
       content: "\229B";
-      color: var(--heading-color);
+      color: light-dark(var(--light-heading-color), var(--dark-heading-color));
     }
   }
 
@@ -109,11 +109,11 @@ const { currentPage } = Astro.props;
       --size: 2rem;
       height: var(--size);
       width: var(--size);
-      fill: var(--font-color);
+      fill: light-dark(var(--light-font-color), var(--dark-font-color));
     }
 
     path {
-      stroke: var(--font-color);
+      stroke: light-dark(var(--light-font-color), var(--dark-font-color));
     }
   }
 
@@ -153,11 +153,15 @@ const { currentPage } = Astro.props;
       top: 0;
       left: 0;
       bottom: 0;
-      background-color: var(--bg-color);
+      background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
       width: 80%;
       gap: 2rem;
       z-index: 9;
-      box-shadow: 0 0 0 100vmax hsl(from var(--bg-color) h s l / 0.6);
+      box-shadow: 0 0 0 100vmax
+        hsl(
+          from light-dark(var(--light-bg-color), var(--dark-bg-color)) h s l /
+            0.6
+        );
       animation: open-mobile-nav 500ms ease-in-out forwards;
 
       .icon-close {
@@ -174,11 +178,15 @@ const { currentPage } = Astro.props;
       top: 0;
       left: 0;
       bottom: 0;
-      background-color: var(--bg-color);
+      background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
       width: 80%;
       gap: 2rem;
       z-index: 9;
-      box-shadow: 0 0 0 100vmax hsl(from var(--bg-color) h s l / 0.6);
+      box-shadow: 0 0 0 100vmax
+        hsl(
+          from light-dark(var(--light-bg-color), var(--dark-bg-color)) h s l /
+            0.6
+        );
       animation: close-mobile-nav 500ms ease-in-out forwards;
 
       .icon-close {

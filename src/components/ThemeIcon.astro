@@ -24,7 +24,8 @@
     cursor: pointer;
 
     &:focus {
-      outline: 1px solid var(--heading-color);
+      outline: 1px solid
+        light-dark(var(--light-heading-color), var(--dark-heading-color));
     }
   }
 
@@ -32,11 +33,11 @@
     fill: transparent;
   }
   .moon {
-    fill: var(--font-color);
+    fill: light-dark(var(--light-font-color), var(--dark-font-color));
   }
 
   :global(.dark) .sun {
-    fill: var(--font-color);
+    fill: light-dark(var(--light-font-color), var(--dark-font-color));
   }
   :global(.dark) .moon {
     fill: transparent;

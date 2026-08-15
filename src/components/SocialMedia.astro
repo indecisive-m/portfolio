@@ -60,12 +60,13 @@ import "@styles/global.css";
   }
 
   svg {
-    fill: var(--font-color);
+    fill: light-dark(var(--light-font-color), var(--dark-font-color));
+;
     height: 20px;
     width: 20px;
 
     &:hover, &:focus-visible {
-      fill: var(--heading-color);
+      fill: light-dark(var(--light-heading-color), var(--dark-heading-color));
     }
   }
 

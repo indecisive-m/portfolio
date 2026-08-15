@@ -34,7 +34,10 @@ const { href, title, description, tags, publishDate } = Astro.props;
 <style>
   li {
     list-style: none;
-    background-color: var(--container-color);
+    background-color: light-dark(
+      var(--light-container-color),
+      var(--dark-container-color)
+    );
     padding: 1rem;
     border-radius: 0.25rem;
 
