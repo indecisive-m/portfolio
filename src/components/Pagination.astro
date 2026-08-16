@@ -112,7 +112,7 @@ for (let i = 1; i <= page?.lastPage; i++) {
   }
 
   .current {
-    background-color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+    background-color: var(--heading-color);
     border-radius: 0.5rem;
     padding-inline: 1rem;
     padding-block: 0.5rem;
@@ -120,12 +120,12 @@ for (let i = 1; i <= page?.lastPage; i++) {
 
   svg {
     --size: 1rem;
-    fill: light-dark(var(--light-font-color), var(--dark-font-color));
+    fill: var(--font-color);
     height: var(--size);
     width: var(--size);
 
     &:hover {
-      fill: light-dark(var(--light-heading-color), var(--dark-heading-color));
+      fill: var(--heading-color);
     }
   }
 </style>

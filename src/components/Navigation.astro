@@ -86,7 +86,7 @@ const { currentPage } = Astro.props;
 
   .current {
     position: relative;
-    color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+    color: var(--heading-color);
     text-decoration: double;
 
     &::before {
@@ -94,7 +94,7 @@ const { currentPage } = Astro.props;
       top: 0;
       left: -1rem;
       content: "\229B";
-      color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+      color: var(--heading-color);
     }
   }
 
@@ -109,11 +109,11 @@ const { currentPage } = Astro.props;
       --size: 2rem;
       height: var(--size);
       width: var(--size);
-      fill: light-dark(var(--light-font-color), var(--dark-font-color));
+      fill: var(--font-color);
     }
 
     path {
-      stroke: light-dark(var(--light-font-color), var(--dark-font-color));
+      stroke: var(--font-color);
     }
   }
 
@@ -153,15 +153,11 @@ const { currentPage } = Astro.props;
       top: 0;
       left: 0;
       bottom: 0;
-      background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
+      background-color: var(--bg-color);
       width: 80%;
       gap: 2rem;
       z-index: 9;
-      box-shadow: 0 0 0 100vmax
-        hsl(
-          from light-dark(var(--light-bg-color), var(--dark-bg-color)) h s l /
-            0.6
-        );
+      box-shadow: 0 0 0 100vmax hsl(from var(--bg-color) h s l / 0.6);
       animation: open-mobile-nav 500ms ease-in-out forwards;
 
       .icon-close {
@@ -178,15 +174,11 @@ const { currentPage } = Astro.props;
       top: 0;
       left: 0;
       bottom: 0;
-      background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
+      background-color: var(--bg-color);
       width: 80%;
       gap: 2rem;
       z-index: 9;
-      box-shadow: 0 0 0 100vmax
-        hsl(
-          from light-dark(var(--light-bg-color), var(--dark-bg-color)) h s l /
-            0.6
-        );
+      box-shadow: 0 0 0 100vmax hsl(from var(--bg-color) h s l / 0.6);
       animation: close-mobile-nav 500ms ease-in-out forwards;
 
       .icon-close {
@@ -216,28 +208,23 @@ const { currentPage } = Astro.props;
 </style>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const navToggle = document.querySelector("#menu-button");
-    navToggle?.addEventListener("click", () => {
-      const currentToggleState = navToggle.getAttribute("aria-expanded");
+  const navToggle = document.querySelector("#menu-button");
+  navToggle?.addEventListener("click", () => {
+    const currentToggleState = navToggle.getAttribute("aria-expanded");
 
-      if (currentToggleState === "false") {
-        navToggle.setAttribute("aria-expanded", "true");
-      } else {
-        navToggle.setAttribute("aria-expanded", "closing");
-        setTimeout(() => {
-          navToggle.setAttribute("aria-expanded", "false");
-        }, 500);
-      }
-    });
-  });
-  document.addEventListener("astro:page-load", () => {
-    const navToggle = document.querySelector("#menu-button");
-
-    const currentToggleState = navToggle?.getAttribute("aria-expanded");
-
-    if (currentToggleState === "true") {
-      navToggle?.setAttribute("aria-expanded", "false");
+    if (currentToggleState === "false") {
+      navToggle.setAttribute("aria-expanded", "true");
+    } else {
+      navToggle.setAttribute("aria-expanded", "closing");
+      setTimeout(() => {
+        navToggle.setAttribute("aria-expanded", "false");
+      }, 500);
     }
   });
+
+  const currentToggleState = navToggle?.getAttribute("aria-expanded");
+
+  if (currentToggleState === "true") {
+    navToggle?.setAttribute("aria-expanded", "false");
+  }
 </script>

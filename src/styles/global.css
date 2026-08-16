@@ -1,20 +1,41 @@
 :root {
   color-scheme: light dark;
 
-  --light-heading-color: #be5409;
-  --light-third-color: #9b633b;
-  --light-fourth-color: #70533e;
-  --light-font-color: #463a32;
-  /*--bg-color: #fffcfa;*/
-  --light-bg-color: #faebe1;
-  --light-container-color: #f9f1ed;
-  --light-box-shadow: hsla(0, 0%, 100%, 0.4);
+  @media (prefers-color-scheme: dark) {
+    --theme: dark;
+  }
 
-  --dark-bg-color: #1c1917;
-  --dark-heading-color: #f58a3d;
-  --dark-font-color: #dcbaa3;
-  --dark-container-color: #242220;
-  --dark-box-shadow: hsla(0, 0%, 0%, 0.4);
+  --heading-color: light-dark(#be5409, #f58a3d);
+  --font-color: light-dark(#463a32, #dcbaa3);
+  --bg-color: light-dark(#faebe1, #1c1917);
+  --container-color: light-dark(#f9f1ed, #242220);
+  --box-shadow: light-dark(hsla(0, 0%, 100%, 0.4), hsla(0, 0%, 0%, 0.4));
+
+  /*--light-third-color: #9b633b;
+  --light-fourth-color: #70533e;*/
+  /*--bg-color: #fffcfa;*/
+}
+
+[data-theme] {
+  color-scheme: var(--theme);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --heading-color: #be5409;
+  --font-color: #463a32;
+  --bg-color: #faebe1;
+  --container-color: #f9f1ed;
+  --box-shadow: hsla(0, 0%, 100%, 0.4);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --heading-color: #f58a3d;
+  --font-color: #dcbaa3;
+  --bg-color: #1c1917;
+  --container-color: #242220;
+  --box-shadow: hsla(0, 0%, 0%, 0.4);
 }
 
 html,
@@ -27,7 +48,7 @@ body {
   max-width: 100ch;
   padding: 2rem;
   line-height: 1.5;
-  background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
+  background-color: var(--bg-color);
 }
 
 * {
@@ -41,7 +62,7 @@ figure {
 }
 
 figcaption {
-  color: light-dark(var(--light-font-color), var(--dark-font-color));
+  color: var(--font-color);
   font-size: 0.75rem;
   text-align: center;
 }
@@ -50,19 +71,19 @@ h1 {
   margin: 1rem 0;
   font-size: 2.5rem;
   font-weight: 400;
-  color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+  color: var(--heading-color);
 }
 
 h2 {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 400;
-  color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+  color: var(--heading-color);
 }
 
 label,
 p {
-  color: light-dark(var(--light-font-color), var(--dark-font-color));
+  color: var(--font-color);
   font-size: 1rem;
 }
 
@@ -94,24 +115,23 @@ a {
   &:link {
     text-decoration: underline;
     background-color: transparent;
-    color: light-dark(var(--light-font-color), var(--dark-font-color));
+    color: var(--font-color);
     font-size: 1.2em;
     position: relative;
   }
 
   &:visited {
     text-decoration: none;
-    color: light-dark(var(--light-font-color), var(--dark-font-color));
+    color: var(--font-color);
   }
 
   &:hover,
   &:focus-visible {
-    color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+    color: var(--heading-color);
   }
 
   &:focus-visible {
-    outline: 1px solid
-      light-dark(var(--light-heading-color), var(--dark-heading-color));
+    outline: 1px solid var(--heading-color);
   }
 
   &:active {
@@ -120,7 +140,7 @@ a {
 }
 
 li::marker {
-  color: light-dark(var(--light-heading-color), var(--dark-heading-color));
+  color: var(--heading-color);
 }
 
 .grid {
@@ -153,12 +173,9 @@ body > .footer {
 }
 
 .cta-button {
-  background-color: light-dark(
-    var(--light-heading-color),
-    var(--dark-heading-color)
-  );
+  background-color: var(--heading-color);
 
-  color: light-dark(var(--light-bg-color), var(--dark-bg-color));
+  color: var(--bg-color);
   font-family: inherit;
   border: none;
   border-radius: 5px;
@@ -167,10 +184,9 @@ body > .footer {
 
   &:hover,
   :focus-visible {
-    background-color: light-dark(var(--light-bg-color), var(--dark-bg-color));
-    color: light-dark(var(--light-heading-color), var(--dark-heading-color));
-    outline: 1px solid
-      light-dark(var(--light-heading-color), var(--dark-heading-color));
+    background-color: var(--bg-color);
+    color: var(--heading-color);
+    outline: 1px solid var(--heading-color);
   }
 }
 

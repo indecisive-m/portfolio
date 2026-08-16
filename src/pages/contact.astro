@@ -36,7 +36,7 @@ const result = Astro.getActionResult(actions.contactForm);
             id="name"
             autocomplete="name"
             required
-            transition:persist
+
           />
         </label>
         <label for="email">
@@ -47,7 +47,7 @@ const result = Astro.getActionResult(actions.contactForm);
             id="email"
             autocomplete="email"
             aria-describedby="error"
-            transition:persist
+
           />
         </label>
         <label for="message" class="grid">
@@ -59,7 +59,7 @@ const result = Astro.getActionResult(actions.contactForm);
             id="message"
             required
             oninput="this.parentNode.dataset.replicatedValue = this.value"
-            transition:persist
+
           />
         </div>
 
@@ -105,21 +105,21 @@ import {PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
   }
 
   input {
-    background-color: light-dark(var(--light-container-color), var(--dark-container-color));
+    background-color: var(--container-color);
     color: var(--font-color);
     border: none;
     padding: 0.75rem;
     font-family: inherit;
 
     &:focus {
-      outline: 1px solid light-dark(var(--light-heading-color), var(--dark-heading-color));
+      outline: 1px solid var(--heading-color);
     }
   }
 
   input:-webkit-autofill,
   input:-webkit-autofill:focus {
-    box-shadow: 0 0 0 1000px light-dark(var(--light-container-color), var(--dark-container-color)) inset;
-    -webkit-text-fill-color: light-dark(var(--light-font-color), var(--dark-font-color));
+    box-shadow: 0 0 0 1000px var(--container-color) inset;
+    -webkit-text-fill-color: var(--font-color);
   }
 
   .grow-wrap {
@@ -150,12 +150,12 @@ import {PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
 
   textarea {
     padding: 0.5rem;
-    background-color: light-dark(var(--light-container-color), var(--dark-container-color));
-    color: light-dark(var(--light-font-color), var(--dark-font-color));
+    background-color: var(--container-color);
+    color: var(--font-color);
     border: none;
 
     &:focus {
-      outline: 1px solid light-dark(var(--light-heading-color), var(--dark-heading-color));
+      outline: 1px solid var(--heading-color);
     }
   }
 
