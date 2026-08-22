@@ -38,16 +38,16 @@
   --box-shadow: hsla(0, 0%, 0%, 0.4);
 }
 
-html,
-body {
-  height: 100%;
+html {
+  margin: 0;
+  min-height: 100svh;
+  scroll-behavior: smooth;
 }
 body {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 100ch;
-  padding: 2rem;
-  line-height: 1.5;
+  min-height: 100svh;
+  margin: 0;
+  padding-block: 2rem;
+  padding-inline: 4rem;
   background-color: var(--bg-color);
 }
 
@@ -145,6 +145,7 @@ li::marker {
 
 .grid {
   container-type: inline-size;
+  min-height: 100%;
 }
 
 body > .footer {

@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 
 import sitemap from "@astrojs/sitemap";
@@ -23,7 +23,18 @@ export default defineConfig({
     },
     validateSecrets: true,
   },
-
+  fonts: [
+    {
+      name: "Contrail One",
+      cssVariable: "--font-sekuya",
+      provider: fontProviders.fontsource(),
+    },
+    {
+      name: "Barlow",
+      cssVariable: "--font-barlow",
+      provider: fontProviders.fontsource(),
+    },
+  ],
   site: "https://mikewatkins.dev",
   integrations: [sitemap(), mdx()],
   markdown: {

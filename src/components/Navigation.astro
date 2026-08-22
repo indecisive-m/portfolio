@@ -50,19 +50,49 @@ const { currentPage } = Astro.props;
   </button>
 
   <nav id="primary-nav">
-    <a href="/" class:list={{ current: currentPage === "Home" }}>Home</a>
-    <!-- <a href="/about/" class:list={{ current: currentPage === "About" }}>
-      About
-    </a>
-    <a href="/projects/" class:list={{ current: currentPage === "Projects" }}>
-      Projects
-    </a> -->
-    <a href="/blog/" class:list={{ current: currentPage === "Blog" }}>Blog</a>
-    {
-      /* <a href="/tags/" class:list={{ current: currentPage === "Tag Index" }}>
+    <ul>
+      <li>
+        <a
+          href="/contact/"
+          class:list={{ current: currentPage === "Contact Me" }}
+          >Contact Me
+        </a>
+      </li>
+      <li>
+        <a href="/" class:list={{ current: currentPage === "Home" }}>Home</a>
+      </li>
+      <li>
+        <a href="#about" class:list={{ current: currentPage === "About" }}>
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          href="/projects/"
+          class:list={{ current: currentPage === "Projects" }}
+        >
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="/blog/" class:list={{ current: currentPage === "Blog" }}
+          >Blog</a
+        >
+      </li>
+
+      {
+        /* <a href="/tags/" class:list={{ current: currentPage === "Tag Index" }}>
           Tags
         </a> */
-    }
+      }
+      <li>
+        <a
+          href="/contact"
+          class:list={{ current: currentPage === "Contact Me" }}
+          >Contact Me
+        </a>
+      </li>
+    </ul>
   </nav>
   <ThemeIcon />
 </header>
@@ -74,28 +104,61 @@ const { currentPage } = Astro.props;
     justify-content: space-between;
     align-items: center;
   }
+  nav {
+    width: 100%;
+    margin: 0;
+    align-items: center;
+    margin-inline-end: 1.5rem;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    gap: 1.5rem;
+  }
+
+  ul > li:first-child {
+    margin-right: auto;
+    color: var(--bg-color);
+    font-family: inherit;
+    background: linear-gradient(
+      0.25turn,
+      var(--heading-color),
+      var(--font-color)
+    );
+    background-clip: text;
+
+    & > a {
+      color: transparent;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--heading-color);
+      }
+    }
+  }
+
+  ul > li:last-child {
+    display: none;
+  }
 
   a {
-    padding-inline-end: 1.5rem;
-    position: relative;
-
     &:link {
       text-decoration: none;
+    }
+    &:hover {
+      text-decoration: wavy underline 2px;
+      text-underline-offset: 0.5em;
     }
   }
 
   .current {
-    position: relative;
     color: var(--heading-color);
-    text-decoration: double;
-
-    &::before {
-      position: absolute;
-      top: 0;
-      left: -1rem;
-      content: "\229B";
-      color: var(--heading-color);
-    }
   }
 
   button {
@@ -162,6 +225,18 @@ const { currentPage } = Astro.props;
 
       .icon-close {
         z-index: 10;
+      }
+
+      ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      ul > li:first-child {
+        display: none;
+      }
+
+      ul > li:last-child {
+        display: inline-block;
       }
     }
 

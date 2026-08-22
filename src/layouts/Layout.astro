@@ -7,6 +7,8 @@ import "@fontsource/space-mono/700.css";
 import "../styles/global.css";
 import SocialMedia from "@components/SocialMedia.astro";
 
+import { Font } from "astro:assets";
+
 interface Props {
   title: string;
 }
@@ -52,6 +54,9 @@ const { title } = Astro.props;
     })();
   </script>
 
+  <Font cssVariable="--font-sekuya" />
+  <Font cssVariable="--font-barlow" />
+
   <body>
     <Navigation currentPage={title} />
     <main class="grid">
@@ -60,7 +65,7 @@ const { title } = Astro.props;
     <SocialMedia />
   </body><style is:global>
     body {
-      font-family: "Space Mono", monospace;
+      font-family: var(--font-barlow), monospace;
     }
   </style>
 </html>
