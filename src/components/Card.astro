@@ -14,12 +14,15 @@ const { href, title, description, tags, publishDate } = Astro.props;
 
 <li>
   <article>
-    <a href={href}>
-      <h2>
-        {title}
-      </h2>
-    </a>
-    <p>{description}</p>
+    <div>
+      <a href={href}>
+        <h2>
+          {title}
+        </h2>
+      </a>
+      <p>{description}</p>
+    </div>
+
     <div class="tag-wrapper">
       <p class="small">
         {publishDate.toDateString().split(" ").slice(1).join(" ")}
@@ -35,9 +38,13 @@ const { href, title, description, tags, publishDate } = Astro.props;
   li {
     list-style: none;
     background-color: var(--container-color);
-    border: 2px solid hsl(from var(--heading-color) h s l a 0.5);
+    border: 1px solid hsl(from var(--font-color) h s l / 0.2);
+    /*box-shadow: 0.5rem 6px hsl(from var(--font-color) h s l / 0.1);*/
+    box-shadow: 0.5rem 6px var(--card-box-shadow);
+
     padding: 1rem;
     border-radius: 0.25rem;
+    place-content: space-between;
 
     .small {
       font-size: 0.75rem;
