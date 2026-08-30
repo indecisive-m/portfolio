@@ -54,7 +54,7 @@ const { currentPage } = Astro.props;
       <li>
         <a
           href="/contact/"
-          class:list={{ current: currentPage === "Contact Me" }}
+          class:list={{ contact: currentPage === "Contact Me" }}
           >Contact Me
         </a>
       </li>
@@ -62,13 +62,13 @@ const { currentPage } = Astro.props;
         <a href="/" class:list={{ current: currentPage === "Home" }}>Home</a>
       </li>
       <li>
-        <a href="#about" class:list={{ current: currentPage === "About" }}>
+        <a href="/#about" class:list={{ current: currentPage === "About" }}>
           About
         </a>
       </li>
       <li>
         <a
-          href="/projects/"
+          href="/#projects"
           class:list={{ current: currentPage === "Projects" }}
         >
           Projects
@@ -139,6 +139,8 @@ const { currentPage } = Astro.props;
 
       &:hover {
         color: var(--heading-color);
+        text-decoration: wavy underline 2px;
+        text-underline-offset: 0.5em;
       }
     }
   }
@@ -148,19 +150,24 @@ const { currentPage } = Astro.props;
   }
 
   a {
-    &:link {
-      text-decoration: none;
-    }
     &:hover {
       text-decoration: wavy underline 2px;
       text-underline-offset: 0.5em;
+    }
+    &:link:not(:hover, .current) {
+      text-decoration: none;
     }
   }
 
   .current {
     color: var(--heading-color);
+    text-decoration: underline;
+    text-underline-offset: 0.5em;
   }
 
+  .contact {
+    display: none;
+  }
   button {
     background-color: transparent;
     border: none;

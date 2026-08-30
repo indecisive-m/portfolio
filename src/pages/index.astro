@@ -4,70 +4,75 @@ import { Image } from "astro:assets";
 
 import myPhoto from "../assets/images/me.jpg";
 import meWalking from "../assets/images/meWalking.jpg";
+import HomePage from "../assets/images/Home_Page.png";
 
 const pageTitle = "Home";
 ---
 
 <Layout title={pageTitle}>
-  <section class="hero-wrapper">
-    <div class="img-wrapper">
-      <Image
-        src={myPhoto}
-        alt="A photo of myself sat coding at a table overlooking the sea"
-        height={1000}
-        class="hero-img"
-      />
-    </div>
+	<main>
+    <section class="hero-wrapper">
+    	<div class="img-wrapper">
+     		<Image
+          src={myPhoto}
+          alt="A photo of myself sat coding at a table overlooking the sea"
+          height={1000}
+          class="hero-img"
+        />
+      </div>
+      <div class="text-wrapper">
+        <h1>Mike Watkins</h1>
+        <p class="subtitle">Mobile Developer</p>
+      </div>
+    </section>
+	</main>
 
-    <div class="text-wrapper">
-      <h1>Mike Watkins</h1>
-      <p class="subtitle">Mobile Developer</p>
-      <!-- <a href="/contact">
-        <button class="cta-button"><span>Contact Me</span></button>
-      </a> -->
-    </div>
-  </section>
   <section class="about-wrapper" id="about">
+    <div class="about-img-wrapper">
+      <Image src={meWalking} alt="An image of myself walking away from the photographer. I am walking my dog in a field of dead grass. There are trees infront of me and off to the right is a large electricity pylon " class="img" />
+      <p class="img-caption">I'm fascinated with these pylons</p>
+    </div>
     <div class="description-wrapper">
       <h2>Hey, I'm Mike</h2>
-      <p>
+      <p class="description-text">
         I am a mobile developer specialising in Android and React Native with a
         focus on building high-quality, cross-platform mobile applications.
       </p>
-      <p>
+      <p class="description-text">
         I live in Somerset, UK with my lovely wife Jessica and my black labrador
         Ruby.
       </p>
-    </div>
-    <div class="about-img-wrapper">
-      <Image src={meWalking} alt="" class="img" />
-      <p class="img-caption">I have a fascination with these pylons</p>
-    </div>
-    <div class="description-wrapper wide">
-      <h2>Hey, I'm Mike</h2>
-      <p>
-        I am a mobile developer specialising in Android and React Native with a
-        focus on building high-quality, cross-platform mobile applications.
-      </p>
-      <p>
-        I live in Somerset, UK with my lovely wife Jessica and my black labrador
-        Ruby.
-      </p>
+      <p>I enjoy DIY and building things out of wood. Going on walks and adventures with the dog, we especially like the woods. I also like relaxing with a cup of tea and a good puzzle.</p>
     </div>
   </section>
 
-  <!-- <div>
+  <section id="projects" class="projects-wrapper">
+  	<h2>Projects</h2>
+   <div class="project-card">
+   <div class="project-image-wrapper">
+   	<Image src={HomePage} alt="" class="project-image"/>
+   </div>
+    <div>
+    	<h3>Movie Search <span>(working title)</span></h3>
+     	<p>Movie Search is an android app built with Jetpack Compose which heavily utilises the TMDB api to search for movies and tv shows. It has a details screen with headline and genre categories as well as watch providers, cast details, recommendations and reviews. There is a watch later screen which gets details from Room storage for offline support for saved media.
+      </p>
+    </div>
 
+   </div>
+   <div class="project-card">
+   <div class="project-image-wrapper">
+   	<Image src={HomePage} alt="" class="project-image"/>
+   </div>
+    <div>
+    	<h3>Portfolio Site</h3>
+     	<p>Movie Search is a android app built with Jetpack Compose which heavily utilises the TMDB api to search for movies and tv shows. It has a details screen with headline and genre categories as well as watch providers, cast details, recommendations and reviews. There is a watch later screen which gets details from Room storage for offline support for saved media.
+      </p>
+    </div>
 
-    </div> -->
-  <!-- <div class="img-wrapper">
-      <Image
-        src={myPhoto}
-        alt="A photo of myself sat coding at a table overlooking the sea"
-        height={400}
-        class="img"
-      />
-    </div> -->
+   </div>
+
+  </section>
+
 
   <style>
     body {
@@ -104,21 +109,45 @@ const pageTitle = "Home";
       font-family: var(--font-barlow);
     }
 
+    h2 {
+        font-size: 2vw;
+    }
+
+
+
     .about-wrapper {
       height: calc(100vh - 5rem);
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(min(400px, 50%), 1fr));
       padding-block: 2rem;
       place-content: center;
       gap: 2rem;
+      margin-block: 3rem;
+
+      & h2 {
+          font-size: 3rem;
+      }
+      & p {
+          font-size: 1.25rem;
+      }
+
+      .img-caption {
+          display: none;
+          opacity: 0;
+      }
     }
 
     .description-wrapper {
       background-color: var(--container-color);
-      padding: 1rem;
+      height: 100%;
+      padding-inline: 2rem;
+      align-content: center;
+      line-height: 1.2;
       border: 1px solid hsl(from var(--font-color) h s l / 0.2);
       box-shadow: 1rem 8px hsl(from var(--heading-color) h s l / 0.2);
     }
+
+
 
     .img-wrapper {
       position: absolute;
@@ -135,9 +164,7 @@ const pageTitle = "Home";
       width: 100%;
       opacity: 15%;
     }
-    .img-caption {
-      display: none;
-    }
+
 
     .img {
       display: block;
@@ -146,6 +173,7 @@ const pageTitle = "Home";
       object-fit: contain;
       height: auto;
       box-shadow: 1rem 8px hsl(from var(--heading-color) h s l / 0.2);
+      border: 1px solid hsl(from var(--font-color) h s l / 0.2);
     }
 
     .about-img-wrapper {
@@ -154,17 +182,30 @@ const pageTitle = "Home";
 
     .about-img-wrapper:hover .img-caption {
       position: absolute;
-      bottom: -4rem;
       display: block;
+      bottom: 0;
+      padding-inline: 2rem;
+      padding-block: 1.5rem;
+      background-color: var(--container-color);
+      border-radius: 0.5rem;
+      width: 100%;
+      color: var(--font-color);
+      text-align: center;
+      border: 1px solid hsl(from var(--font-color) h s l / 0.2);
+      opacity: 1;
+
+      transition-property: opacity, display;
+      transition-duration: 0.5s;
+      transition-behavior: allow-discrete;
+
+      @starting-style {
+        opacity: 0;
+      }
+     }
     }
 
     .button {
-      /*animation-name: fade-in;
-    animation-duration: 1.25s;
-    animation-delay: 1.5s;
-    animation-fill-mode: forwards;
-    opacity: 0%;*/
-      background-color: var(--heading-color);
+    	background-color: var(--heading-color);
       color: var(--bg-color);
       font-family: inherit;
       border: none;
@@ -173,14 +214,85 @@ const pageTitle = "Home";
       cursor: pointer;
     }
 
-    @container (max-width: 70ch) {
+    .projects-wrapper {
+    	height: calc(100vh - 5rem);
+     padding-block: 4rem;
+     display: flex;
+     flex-direction: column;
+     gap: 2rem;
+
+      & h3 {
+      	color: var(--heading-color)
+      }
+
+      & span {
+      	color: var(--font-color);
+       font-size: 1rem;
+      }
+    }
+
+    .project-image-wrapper {
+    	padding: 1rem;
+    }
+
+    .project-card {
+    	display: flex;
+     padding-inline: 1rem;
+     	background-color: var(--container-color);
+      border: 1px solid hsl(from var(--font-color) h s l / 0.2);
+      box-shadow: 1rem 8px hsl(from var(--heading-color) h s l / 0.2);
+    }
+
+    .project-image {
+    	display: block;
+     	max-width: 100px;
+      aspect-ratio: 9/20;
+      height: auto;
+      position: relative;
+    }
+
+
+    @container ( max-width: 95ch) {
+      .about-wrapper {
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+
+        & h2 {
+            font-size: 2rem;
+        }
+        & p {
+            font-size: 1rem;
+        }
+      }
+
+
+    }
+
+    @container (max-width: 75ch) {
       .grid {
         grid-template-columns: 1fr;
         gap: 1rem;
       }
+      .about-wrapper {
+        grid-template-columns: 1fr;
+        height: auto;
+
+        & h2 {
+            font-size: 2.25rem;
+        }
+        & p {
+            font-size: 1.125rem;
+        }
+      }
+
+      .description-wrapper {
+          padding-block: 2rem;
+          grid-row: 1;
+      }
+
 
       .hero-img {
-        display: none;
+        opacity: 10%;
       }
 
       .hero-wrapper {
@@ -206,26 +318,16 @@ const pageTitle = "Home";
         font-size: 1.5rem;
         font-family: var(--font-barlow);
       }
-    }
 
-    @container (width < 90ch) {
-      .about-wrapper {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .wide {
-        grid-column: 1/-1;
-      }
-    }
-
-    @container (max-width: 55ch) {
       .about-wrapper {
         grid-template-columns: 1fr;
-        height: auto;
       }
 
-      .img {
-      }
+
+
     }
+
+
+
   </style>
 </Layout>
