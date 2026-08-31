@@ -49,8 +49,4 @@ export async function turnstileVerify({ request }: ActionAPIContext) {
       message ?? "default",
     );
   }
-
-  if (outcome.success === false) {
-    console.log(await outcome.message);
-  }
 }

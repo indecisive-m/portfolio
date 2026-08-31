@@ -4,6 +4,8 @@ import "@styles/global.css";
 
 <div class="footer">
   <p class="small-font">Copyright © Mike Watkins 2026</p>
+  <a class="small-font" href="/contact/">Contact Me
+  </a>
 
   <ul>
     <li>
@@ -59,6 +61,10 @@ import "@styles/global.css";
     justify-content: flex-end;
   }
 
+  a {
+
+  }
+
   svg {
     fill: var(--font-color);
 ;
@@ -80,9 +86,18 @@ import "@styles/global.css";
     justify-content: space-between;
   }
 
-  p {
+  p, a{
     display: flex;
     font-size: 0.6rem;
+  }
+
+  a {
+  text-decoration: underline;
+  text-underline-offset: 0.5em;
+
+  &:hover {
+  	text-decoration: wavy underline 1px;
+  }
   }
 
 

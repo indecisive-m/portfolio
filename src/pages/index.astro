@@ -56,21 +56,23 @@ const pageTitle = "Home";
     	<h3>Movie Search <span>(working title)</span></h3>
      	<p>Movie Search is an android app built with Jetpack Compose which heavily utilises the TMDB api to search for movies and tv shows. It has a details screen with headline and genre categories as well as watch providers, cast details, recommendations and reviews. There is a watch later screen which gets details from Room storage for offline support for saved media.
       </p>
+      <br/>
+      <br/>
+      <span class="development-state">Active</span>
     </div>
 
    </div>
    <div class="project-card">
-   <div class="project-image-wrapper">
-   	<Image src={HomePage} alt="" class="project-image"/>
-   </div>
     <div>
     	<h3>Portfolio Site</h3>
-     	<p>Movie Search is a android app built with Jetpack Compose which heavily utilises the TMDB api to search for movies and tv shows. It has a details screen with headline and genre categories as well as watch providers, cast details, recommendations and reviews. There is a watch later screen which gets details from Room storage for offline support for saved media.
+     	<p>
+      The website you're currently on, my portfolio site. Currently on V2 after a design revamp due to a year or so of non use. Built with Typescript in Astro. Using Resend for the contact form and cloudflare turnstile for bot prevention.
       </p>
+      <br/>
+      <br/>
+      <span class="development-state">Active</span>
     </div>
-
    </div>
-
   </section>
 
 
@@ -125,7 +127,8 @@ const pageTitle = "Home";
       margin-block: 3rem;
 
       & h2 {
-          font-size: 3rem;
+          font-size: 5rem;
+          font-family: var(--font-sekuya);
       }
       & p {
           font-size: 1.25rem;
@@ -221,6 +224,10 @@ const pageTitle = "Home";
      flex-direction: column;
      gap: 2rem;
 
+     & h2 {
+       font-size: 8vw;
+       font-family: var(--font-sekuya);
+     }
       & h3 {
       	color: var(--heading-color)
       }
@@ -241,6 +248,20 @@ const pageTitle = "Home";
      	background-color: var(--container-color);
       border: 1px solid hsl(from var(--font-color) h s l / 0.2);
       box-shadow: 1rem 8px hsl(from var(--heading-color) h s l / 0.2);
+      position: relative;
+
+      & .development-state {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      color: var(--heading-color);
+      font-size: 1.125rem;
+
+      &::before {
+      	content: "◦";
+       padding-inline: 1ch;
+      }
+      }
     }
 
     .project-image {
@@ -250,6 +271,7 @@ const pageTitle = "Home";
       height: auto;
       position: relative;
     }
+
 
 
     @container ( max-width: 95ch) {
@@ -325,6 +347,13 @@ const pageTitle = "Home";
 
 
 
+    }
+
+    @container (max-width: 40ch) {
+    .project-image-wrapper {
+    	display: none;
+
+    }
     }
 
 
