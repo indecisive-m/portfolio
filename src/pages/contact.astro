@@ -84,7 +84,7 @@ const result = Astro.getActionResult(actions.contactForm);
 import {PUBLIC_TURNSTILE_SITE_KEY} from "astro:env/client"
 
 
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // @ts-expect-error
     turnstile.render("#cf-turnstile", {
       // sitekey: "1x00000000000000000000AA", // -- TEST KEY ALWAYS PASSES
