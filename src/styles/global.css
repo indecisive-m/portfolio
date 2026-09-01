@@ -240,3 +240,9 @@ body > .footer {
     max-width: 90vw;
   }
 }
+
+@media (max-width: 50ch) {
+  body {
+    padding-inline: 1.5rem;
+  }
+}
