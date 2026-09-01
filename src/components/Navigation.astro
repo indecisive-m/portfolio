@@ -317,10 +317,10 @@ const { currentPage } = Astro.props;
   const projects = document.querySelector('a[href="/#projects"]');
 
   about?.addEventListener("click", () => {
-    popover.hidePopover();
+    popover?.hidePopover();
   });
   projects?.addEventListener("click", () => {
-    popover.hidePopover();
+    popover?.hidePopover();
   });
   // const navToggle = document.querySelector("#menu-button");
   // navToggle?.addEventListener("click", () => {
