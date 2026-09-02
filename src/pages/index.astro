@@ -88,6 +88,7 @@ const pageTitle = "Home";
       padding-block-end: 5rem;
       position: relative;
       justify-content: end;
+      overflow: hidden;
     }
 
     .text-wrapper {
@@ -286,8 +287,6 @@ const pageTitle = "Home";
             font-size: 1rem;
         }
       }
-
-
     }
 
     @container (max-width: 75ch) {
@@ -320,6 +319,7 @@ const pageTitle = "Home";
       .hero-wrapper {
         place-content: center;
       }
+
 
       .text-wrapper {
         display: grid;
@@ -356,6 +356,10 @@ const pageTitle = "Home";
 
      .projects-wrapper {
       height: auto;
+     }
+
+     .img-wrapper {
+     	display: none;
      }
     }
 
