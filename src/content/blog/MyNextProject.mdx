@@ -1,0 +1,30 @@
+---
+title: "My Next Project"
+publishDate: 2026-09-05
+description: "The beginnings of a new project"
+tags: ["android", "jetpack compose", "ktor", "kotlin"]
+slug: my-next-project
+draft: false
+---
+
+I've begun to work on my next project. It's a step above what I have done before and I know it will be a real challenge as I am breaking the rule of only do one new thing at a time and biting off much more than I can chew.
+
+The vision is a social media client that takes in both the Bluesky and Mastodon feeds and aggregates them into one unified feed. You'll have the ability to do all the normal stuff, like, repost, reply etc. In the long term I plan to add Threads posting (Due to their API I can't get their feed, although maybe this will change with time) as well as posting straight to my own website as a sort of indie web vibe.
+
+### What's new for me:
+
+While I have written apps that use an api that fetches and posts data, I have never had a backend server. This will be the first time I am going to do some backend work, the backend will do all the heavy lifting and the front end will query the backend. This is going to be written in Kotlin and specifically I will be using Ktor.
+
+Oh, I didn't mention but this is also going to be a Kotlin Multiplatform app. I am going to start with the Android app, then build the web before finally finishing with the iOS app, if I even get that far. I don't own an iPhone and don't plan to either but.. and this is a big but.. I release this to the public then there may be want for an iOS app.
+
+I also plan to not use AI for the coding. I understand in 2026 this is unpopular but I won't learn if AI writes for me. This is something I'm doing for fun, because I enjoy coding and because I want to learn and get better, this isn't a job, this isn't what pays my bills so I can take as long as I want to build this. I am however, going to use AI to help talk through architecture decisions and use it to help shape the layout of the code but without writing that code. As I said earlier, there is a lot of new things for me in this app so this will help with that side of things.
+
+### The current plan:
+
+I am currently running a Docker container with a Postgres database. I am going to use this to store login information. The user will need to make an account with my app, they will then link their other social media accounts to this, and I will save all of the relevant session tokens etc. I do not want the social media passwords saved in this database if possible. When this gets towards production (even if just for me), I am going to choose a managed Postgres database but keep it to a local Docker container during development.
+
+The app will then fetch the relevant feeds from the different social medias and turn them into one unified feed. Posting will be similar but you will be able to choose where you would like to post. The backend will handle the data transformations and mapping from each social media implementations and then unifying them into one that can be used to display this in the feed but also in reverse, taking a post and splitting them to work where it needs to go.
+
+### What I'm working on now:
+
+I am starting simple, I am going to get the Ktor backend to read, insert and delete from the database. From there I will be building a login page in the android app and then being able to authenticate in the app. Small start but that's already a lot that I have not done before and a solid foundation for the app.
